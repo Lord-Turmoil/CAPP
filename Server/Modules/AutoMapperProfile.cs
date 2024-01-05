@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
+using Shared.Dtos;
 
 namespace Server.Modules;
 

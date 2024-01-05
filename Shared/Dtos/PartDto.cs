@@ -1,4 +1,6 @@
-﻿namespace Server.Modules.Core.Dtos;
+﻿using Server.Modules.Core.Dtos;
+
+namespace Shared.Dtos;
 
 public class PartDto : TimestampDto
 {

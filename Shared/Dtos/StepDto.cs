@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace Server.Modules.Core.Dtos;
+﻿namespace Shared.Dtos;
 
 public class StepDto : TimestampDto
 {

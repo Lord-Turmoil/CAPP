@@ -1,4 +1,4 @@
-﻿namespace Server.Modules.Core.Dtos;
+﻿namespace Shared.Dtos;
 
 public class TimestampDto
 {

@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
+using Shared.Dtos;
 using Tonisoft.AspExtensions.Module;
 using Tonisoft.AspExtensions.Response;
 

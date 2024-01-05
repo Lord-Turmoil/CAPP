@@ -1,4 +1,6 @@
-﻿namespace Server.Modules.Core.Dtos;
+﻿using Shared.Dtos;
+
+namespace Server.Modules.Core.Dtos;
 
 public class ProcedureDto : TimestampDto
 {
