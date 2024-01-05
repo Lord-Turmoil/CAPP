@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Modules.Core.Models;
 
+[Owned]
 public class Step : TimestampModel
 {
     [Key]

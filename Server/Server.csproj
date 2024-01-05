@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Modules\Core\Controllers\" />
-    <Folder Include="Modules\Core\Dtos\" />
-    <Folder Include="Modules\Core\Services\" />
   </ItemGroup>
 
 </Project>
