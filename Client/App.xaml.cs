@@ -15,6 +15,7 @@ public partial class App : PrismApplication
     {
         containerRegistry.RegisterForNavigation<MainView, MainViewModel>();
         containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
+        containerRegistry.RegisterForNavigation<PartsView, PartsViewModel>();
     }
 
     protected override Window CreateShell()

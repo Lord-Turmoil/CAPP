@@ -40,9 +40,9 @@ class MainViewModel : BindableBase
     {
         MenuTabs = new ObservableCollection<MenuTab> {
             new(Texts.Tab0, "IndexView", Texts.Description0),
-            new(Texts.Tab1, "PartView", Texts.Description1),
-            new(Texts.Tab2, "GroupView", Texts.Description2),
-            new(Texts.Tab3, "GroupView", Texts.Description3)
+            new(Texts.Tab1, "PartsView", Texts.Description1),
+            new(Texts.Tab2, "GroupsView", Texts.Description2),
+            new(Texts.Tab3, "CreateView", Texts.Description3)
         };
     }
 

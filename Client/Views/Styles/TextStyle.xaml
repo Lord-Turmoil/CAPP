@@ -9,4 +9,11 @@
         <Setter Property="FontFamily" Value="Microsoft YaHei UI"></Setter>
         <Setter Property="FontSize" Value="18"></Setter>
     </Style>
+
+    <Style x:Key="Banner" TargetType="TextBlock" BasedOn="{StaticResource BaseText}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+        <Setter Property="Background" Value="LightGray" />
+    </Style>
 </ResourceDictionary>
