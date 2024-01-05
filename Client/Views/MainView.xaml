@@ -12,6 +12,26 @@
         Title="Computer-Aided Process Planning" Height="640" Width="960"
         MinWidth="860" MinHeight="480">
     <Grid>
-
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TabControl x:Name="MenuTab"
+                    ItemsSource="{Binding MenuTabs}"
+                    ItemTemplate="{StaticResource MenuTabHeaderTemplate}"
+                    ContentTemplate="{StaticResource MenuTabContentTemplate}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                           CommandParameter="{Binding ElementName=MenuTab, Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TabControl>
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static ext:PrismManager.MainRegionName}" />
     </Grid>
 </Window>

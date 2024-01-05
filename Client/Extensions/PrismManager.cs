@@ -1,5 +1,6 @@
 ﻿namespace Client.Extensions;
 
-class PrismManager
+static class PrismManager
 {
+    public static string MainRegionName = "MainRegionName";
 }
