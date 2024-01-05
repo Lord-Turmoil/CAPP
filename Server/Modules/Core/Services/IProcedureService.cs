@@ -5,5 +5,5 @@ namespace Server.Modules.Core.Services;
 
 public interface IProcedureService
 {
-    Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int partId, string description);
+    Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int partId, string description, int order);
 }

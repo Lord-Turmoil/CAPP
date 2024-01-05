@@ -13,7 +13,7 @@ public class StepService : BaseService<StepService>, IStepService
     {
     }
 
-    public async Task<ApiResponse<StepDto>> CreateStepAsync(int procedureId, string description)
+    public async Task<ApiResponse<StepDto>> CreateStepAsync(int procedureId, string description, int order)
     {
         IRepository<Procedure> procedureRepo = _unitOfWork.GetRepository<Procedure>();
         IRepository<Step> stepRepo = _unitOfWork.GetRepository<Step>();
@@ -26,7 +26,10 @@ public class StepService : BaseService<StepService>, IStepService
 
         Step step = new() {
             Procedure = procedure,
-            Description = description
+            Description = description,
+            Order = order,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
         await stepRepo.InsertAsync(step);
 

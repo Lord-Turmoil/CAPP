@@ -35,7 +35,7 @@ public class PartService : BaseService<PartService>, IPartService
     public async Task<ApiResponse<List<PartDto>>> GetPartsAsync()
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
-        IList<Part> parts = await repo.GetAllAsync();
+        IList<Part> parts = await repo.GetAllAsync(include: p => p.Include(p => p.Procedures).ThenInclude(p => p.Steps));
 
         return new ApiResponse<List<PartDto>>(parts.Select(_mapper.Map<Part, PartDto>).ToList());
     }

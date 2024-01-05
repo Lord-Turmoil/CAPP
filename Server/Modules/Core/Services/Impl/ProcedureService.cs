@@ -13,7 +13,7 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
     {
     }
 
-    public async Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int partId, string description)
+    public async Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int partId, string description, int order)
     {
         IRepository<Part> partRepo = _unitOfWork.GetRepository<Part>();
         IRepository<Procedure> procedureRepo = _unitOfWork.GetRepository<Procedure>();
@@ -26,7 +26,10 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
 
         Procedure procedure = new() {
             Part = part,
-            Description = description
+            Description = description,
+            Order = order,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
         await procedureRepo.InsertAsync(procedure);
 

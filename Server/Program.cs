@@ -1,5 +1,8 @@
+using Arch.EntityFrameworkCore.UnitOfWork;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Server.Modules;
+using Tonisoft.AspExtensions.Module;
 
 namespace Server
 {
@@ -16,10 +19,15 @@ namespace Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddUnitOfWork<CappDbContext>();
             builder.Services.AddDbContext<CappDbContext>(options =>
                 options.UseSqlite("Data Source=Database.db"));
+            builder.Services.RegisterModules();
 
-
+            var autoMapperConfig = new MapperConfiguration(config => {
+                config.AddProfile(new AutoMapperProfile());
+            });
+            builder.Services.AddSingleton(autoMapperConfig.CreateMapper());
 
             var app = builder.Build();
 

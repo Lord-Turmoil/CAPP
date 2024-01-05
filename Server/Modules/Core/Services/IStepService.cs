@@ -5,5 +5,5 @@ namespace Server.Modules.Core.Services;
 
 public interface IStepService
 {
-    Task<ApiResponse<StepDto>> CreateStepAsync(int procedureId, string description);
+    Task<ApiResponse<StepDto>> CreateStepAsync(int procedureId, string description, int order);
 }
