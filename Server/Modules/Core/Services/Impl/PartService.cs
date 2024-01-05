@@ -2,6 +2,7 @@
 using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
 using Tonisoft.AspExtensions.Module;
 using Tonisoft.AspExtensions.Response;
@@ -14,25 +15,31 @@ public class PartService : BaseService<PartService>, IPartService
     {
     }
 
-    public async Task<ApiResponse<Part>> GetPartAsync(int id)
+    public async Task<ApiResponse<PartDto>> GetPartAsync(int id)
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
         Part? part = await repo.GetFirstOrDefaultAsync(
             predicate: p => p.Id == id,
             include: p => p.Include(p => p.Procedures).ThenInclude(p => p.Steps)
         );
-        return part == null ? new ApiResponse<Part>("Not found") : new ApiResponse<Part>(part);
+        if (part == null)
+        {
+            return new ApiResponse<PartDto>("Not found");
+        }
+
+        return new ApiResponse<PartDto>(_mapper.Map<Part, PartDto>(part));
     }
 
-    public async Task<ApiResponse<List<Part>>> GetPartsAsync()
+
+    public async Task<ApiResponse<List<PartDto>>> GetPartsAsync()
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
         IList<Part> parts = await repo.GetAllAsync();
 
-        return new ApiResponse<List<Part>>(parts.ToList());
+        return new ApiResponse<List<PartDto>>(parts.Select(_mapper.Map<Part, PartDto>).ToList());
     }
 
-    public async Task<ApiResponse<Part>> CreatePartAsync(string name, string opitz)
+    public async Task<ApiResponse<PartDto>> CreatePartAsync(string name, string opitz)
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
         Part part = new() {
@@ -44,7 +51,7 @@ public class PartService : BaseService<PartService>, IPartService
         await repo.InsertAsync(part);
         await _unitOfWork.SaveChangesAsync();
 
-        return new ApiResponse<Part>(part);
+        return new ApiResponse<PartDto>(_mapper.Map<Part, PartDto>(part));
     }
 
     public async Task<ApiResponse> DeletePartAsync(int id)

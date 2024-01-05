@@ -23,6 +23,11 @@
 
   <ItemGroup>
     <Folder Include="Modules\Core\Controllers\" />
+    <Folder Include="Modules\Core\Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>
