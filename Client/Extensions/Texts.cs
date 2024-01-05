@@ -25,6 +25,7 @@ static class Texts
     public const string UpdatedAt = "UpdatedAt";
     public const string NewPart = "Add New Part";
     public const string Cancel = "Cancel";
+    public const string Delete = "Delete";
 
     public const string AllParts = "All parts";
 

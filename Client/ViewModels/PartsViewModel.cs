@@ -16,7 +16,7 @@ class PartsViewModel : BindableBase
 
     private ObservableCollection<PartDto> _allParts = null!;
 
-    private string _name = "W";
+    private string _name = "";
 
     private int _opitz;
 
