@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Server.Modules;
+
 namespace Server
 {
     public class Program
@@ -13,6 +16,11 @@ namespace Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<CappDbContext>(options =>
+                options.UseSqlite("Data Source=Database.db"));
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -23,7 +31,6 @@ namespace Server
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
