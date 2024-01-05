@@ -1,14 +1,22 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using Client.Views;
+using Prism.DryIoc;
+using Prism.Ioc;
 
-namespace Client
+namespace Client;
+
+/// <summary>
+///     Interaction logic for App.xaml
+/// </summary>
+public partial class App : PrismApplication
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
+
     }
 
+    protected override Window CreateShell()
+    {
+        return Container.Resolve<MainView>();
+    }
 }

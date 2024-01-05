@@ -1,11 +1,16 @@
-﻿<Window x:Class="Client.MainWindow"
+﻿<Window x:Class="Client.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ext="clr-namespace:Client.Extensions"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="Computer-Aided Process Planning" Height="640" Width="960"
+        MinWidth="860" MinHeight="480">
     <Grid>
 
     </Grid>
