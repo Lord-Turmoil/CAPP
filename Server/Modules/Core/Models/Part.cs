@@ -16,6 +16,4 @@ public class Part : TimestampModel
     [Required]
     [MaxLength(15)]
     public string Opitz { get; set; } = null!;
-
-    public ICollection<Procedure> Procedures { get; set; } = null!;
 }

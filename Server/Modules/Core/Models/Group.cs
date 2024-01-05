@@ -5,22 +5,19 @@ using Microsoft.EntityFrameworkCore;
 namespace Server.Modules.Core.Models;
 
 [Owned]
-public class Step : TimestampModel
+public class Group : TimestampModel
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [Required]
-    [MaxLength(1023)]
+    [MaxLength(255)]
     public string Description { get; set; } = null!;
 
     [Required]
-    public int Order { get; set; }
+    [MaxLength(127)]
+    public string Matrix { get; set; } = null!;
 
-    [Required]
-    public int ProcedureId { get; set; }
-
-    [ForeignKey("ProcedureId")]
-    public Procedure Procedure { get; set; } = null!;
+    public ICollection<Procedure> Procedures = null!;
 }

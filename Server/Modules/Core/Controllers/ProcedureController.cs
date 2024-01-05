@@ -22,4 +22,10 @@ public class ProcedureController : BaseController<ProcedureController>
     {
         return _service.CreateProcedureAsync(dto.PartId, dto.Description, dto.Order);
     }
+
+    [HttpDelete]
+    public Task<ApiResponse> DeleteProcedureAsync(int id)
+    {
+        return _service.DeleteProcedureAsync(id);
+    }
 }

@@ -10,6 +10,6 @@ public class CappDbContext : DbContext
     }
 
     public DbSet<Part> Parts { get; set; } = null!;
+    public DbSet<Group> Groups { get; set; } = null!;
     public DbSet<Procedure> Procedures { get; set; } = null!;
-    public DbSet<Step> Steps { get; set; } = null!;
 }

@@ -17,6 +17,12 @@ public class PartController : BaseController<PartController>
         _service = service;
     }
 
+    [HttpPost]
+    public Task<ApiResponse<PartDto>> CreatePartAsync([FromBody] CreatePartDto dto)
+    {
+        return _service.CreatePartAsync(dto.Name, dto.Opitz);
+    }
+
     [HttpGet]
     public Task<ApiResponse<PartDto>> GetPartAsync(int id)
     {
@@ -27,12 +33,6 @@ public class PartController : BaseController<PartController>
     public Task<ApiResponse<List<PartDto>>> GetPartsAsync()
     {
         return _service.GetPartsAsync();
-    }
-
-    [HttpPost]
-    public Task<ApiResponse<PartDto>> CreatePartAsync([FromBody] CreatePartDto dto)
-    {
-        return _service.CreatePartAsync(dto.Name, dto.Opitz);
     }
 
     [HttpDelete]

@@ -1,4 +1,5 @@
-﻿using Arch.EntityFrameworkCore.UnitOfWork;
+﻿using System.Net;
+using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
@@ -13,19 +14,19 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
     {
     }
 
-    public async Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int partId, string description, int order)
+    public async Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int groupId, string description, int order)
     {
-        IRepository<Part> partRepo = _unitOfWork.GetRepository<Part>();
+        IRepository<Group> groupRepo = _unitOfWork.GetRepository<Group>();
         IRepository<Procedure> procedureRepo = _unitOfWork.GetRepository<Procedure>();
 
-        Part? part = await partRepo.FindAsync(partId);
-        if (part == null)
+        Group? group = await groupRepo.FindAsync(groupId);
+        if (group == null)
         {
             return new ApiResponse<ProcedureDto>("Not found");
         }
 
         Procedure procedure = new() {
-            Part = part,
+            Group = group,
             Description = description,
             Order = order,
             CreatedAt = DateTime.UtcNow,
@@ -36,5 +37,14 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
         await _unitOfWork.SaveChangesAsync();
 
         return new ApiResponse<ProcedureDto>(_mapper.Map<ProcedureDto>(procedure));
+    }
+
+    public async Task<ApiResponse> DeleteProcedureAsync(int id)
+    {
+        IRepository<Procedure> repo = _unitOfWork.GetRepository<Procedure>();
+        repo.Delete(id);
+        await _unitOfWork.SaveChangesAsync();
+
+        return new ApiResponse(HttpStatusCode.NoContent);
     }
 }

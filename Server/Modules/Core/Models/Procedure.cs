@@ -19,10 +19,8 @@ public class Procedure : TimestampModel
     public int Order { get; set; }
 
     [Required]
-    public int PartId { get; set; }
+    public int GroupId { get; set; }
 
-    [ForeignKey("PartId")]
-    public Part Part { get; set; } = null!;
-
-    public ICollection<Step> Steps { get; set; } = null!;
+    [ForeignKey("GroupId")]
+    public Group Group { get; set; } = null!;
 }

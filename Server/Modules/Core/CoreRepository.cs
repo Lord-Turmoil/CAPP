@@ -11,16 +11,16 @@ public class PartRepository : Repository<Part>
     }
 }
 
-public class ProcedureRepository : Repository<Procedure>
+public class GroupRepository : Repository<Group>
 {
-    public ProcedureRepository(CappDbContext dbContext) : base(dbContext)
+    public GroupRepository(CappDbContext dbContext) : base(dbContext)
     {
     }
 }
 
-public class StepRepository : Repository<Step>
+public class ProcedureRepository : Repository<Procedure>
 {
-    public StepRepository(CappDbContext dbContext) : base(dbContext)
+    public ProcedureRepository(CappDbContext dbContext) : base(dbContext)
     {
     }
 }

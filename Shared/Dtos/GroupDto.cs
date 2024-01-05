@@ -1,8 +1,8 @@
 ﻿namespace Shared.Dtos;
 
-public class StepDto : TimestampDto
+public class GroupDto : TimestampDto
 {
     public int Id { get; set; }
     public string Description { get; set; } = null!;
-    public int Order { get; set; }
+    public string Matrix { get; set; } = null!;
 }

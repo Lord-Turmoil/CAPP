@@ -13,12 +13,12 @@ public class CoreModule : BaseModule
     public override IServiceCollection RegisterModule(IServiceCollection services)
     {
         services.AddCustomRepository<Part, PartRepository>()
-            .AddCustomRepository<Procedure, ProcedureRepository>()
-            .AddCustomRepository<Step, StepRepository>();
+            .AddCustomRepository<Group, GroupRepository>()
+            .AddCustomRepository<Procedure, ProcedureRepository>();
 
         services.AddScoped<IPartService, PartService>()
             .AddScoped<IProcedureService, ProcedureService>()
-            .AddScoped<IStepService, StepService>();
+            .AddScoped<IGroupService, GroupService>();
 
         return services;
     }
