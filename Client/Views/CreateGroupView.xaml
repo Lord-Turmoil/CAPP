@@ -45,40 +45,47 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.EditGroup}" Style="{StaticResource Banner}" />
-            <ItemsControl Grid.Row="1" Margin="50,20,0,0" HorizontalAlignment="Center"
+            <ScrollViewer Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ItemsControl Grid.Row="0" Margin="50,20,0,0" HorizontalAlignment="Center"
                           ItemsSource="{Binding SwatchHeaders}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:SwatchItem}">
-                        <TextBlock Width="47" Text="{Binding Id, Mode=OneTime}" Style="{StaticResource FormText}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-            <ItemsControl Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Swatches}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:SwatchSet}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
-                            <ItemsControl ItemTemplate="{StaticResource SwatchTemplate}"
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:SwatchItem}">
+                                <TextBlock Width="47" Text="{Binding Id, Mode=OneTime}" Style="{StaticResource FormText}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <ItemsControl Grid.Row="1" HorizontalAlignment="Center" ItemsSource="{Binding Swatches}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:SwatchSet}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
+                                    <ItemsControl ItemTemplate="{StaticResource SwatchTemplate}"
                                           ItemsSource="{Binding Items,Mode=OneTime}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>
