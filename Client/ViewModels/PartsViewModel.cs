@@ -125,25 +125,21 @@ class PartsViewModel : NavigationViewModel
 
     private async Task<PartDto?> CreatePartImpl(string name, string opitz)
     {
-        PartDto? part = null;
         try
         {
             ApiResponse<PartDto> response = await _service.CreatePartAsync(name, opitz);
             if (response.Status)
             {
-                part = response.Result!;
+                return response.Result!;
             }
-            else
-            {
-                PopupManager.ShowInvalidResponse(response);
-            }
+            PopupManager.ShowInvalidResponse(response);
         }
         catch (Exception e)
         {
             PopupManager.ShowNetworkError(e);
         }
 
-        return part;
+        return null;
     }
 
     private async Task DeletePartImpl(int id)
