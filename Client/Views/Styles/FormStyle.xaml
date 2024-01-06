@@ -8,6 +8,11 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
+    <Style x:Key="FormEntryDock" TargetType="DockPanel">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
     <Style x:Key="SingleFormEntry" TargetType="StackPanel" BasedOn="{StaticResource FormEntry}">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Margin" Value="10,5,0,5" />

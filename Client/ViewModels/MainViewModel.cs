@@ -42,7 +42,8 @@ class MainViewModel : BindableBase
             new(Texts.Tab0, Texts.Namespace0, Texts.Description0),
             new(Texts.Tab1, Texts.Namespace1, Texts.Description1),
             new(Texts.Tab2, Texts.Namespace2, Texts.Description2),
-            new(Texts.Tab3, Texts.Namespace3, Texts.Description3)
+            new(Texts.Tab3, Texts.Namespace3, Texts.Description3),
+            new(Texts.Tab4, Texts.Namespace4, Texts.Description4),
         };
     }
 

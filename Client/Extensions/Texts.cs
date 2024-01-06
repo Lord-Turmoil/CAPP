@@ -18,9 +18,9 @@ static class Texts
     public const string Tab3 = "Groups";
     public const string Namespace3 = "GroupView";
     public const string Description3 = "Groups";
-    public const string Tab4 = "Create";
-    public const string Namespace4 = "CreateView";
-    public const string Description4 = "Create";
+    public const string Tab4 = "Derive";
+    public const string Namespace4 = "DeriveView";
+    public const string Description4 = "Derive";
 
     /*
      * Words
@@ -30,23 +30,24 @@ static class Texts
     public const string Description = "Description";
     public const string CreatedAt = "CreatedAt";
     public const string UpdatedAt = "UpdatedAt";
-    public const string NewPart = "Add New Part";
     public const string Cancel = "Cancel";
     public const string Delete = "Delete";
 
-    public const string AllParts = "All parts";
-    public const string AllGroups = "All groups";
-
-    public const string EditGroup = "Edit Group";
-
+    public const string NewPart = "Add New Part";
     public const string NewGroup = "Add New Group";
     public const string ResetGroup = "Reset Group";
-
     public const string NewProcedure = "Add New Procedure";
 
+    public const string AllParts = "All parts";
+    public const string AllGroups = "All groups";
+    public const string EditGroup = "Edit Group";
     public const string StandardProcedures = "Standard Procedures";
-
     public const string PartsInGroup = "Parts in Group";
+    public const string RelatedGroups = "Related Groups";
+    public const string SimilarParts = "Similar Parts";
+
+    public const string Search = "Derive procedures";
+
     /*
      * Form
      */

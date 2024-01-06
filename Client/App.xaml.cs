@@ -29,6 +29,7 @@ public partial class App : PrismApplication
         containerRegistry.RegisterForNavigation<PartsView, PartsViewModel>();
         containerRegistry.RegisterForNavigation<CreateGroupView, CreateGroupViewModel>();
         containerRegistry.RegisterForNavigation<GroupView, GroupViewModel>();
+        containerRegistry.RegisterForNavigation<DeriveView, DeriveViewModel>();
     }
 
     protected override Window CreateShell()
