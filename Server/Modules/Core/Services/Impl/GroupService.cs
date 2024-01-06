@@ -45,9 +45,9 @@ public class GroupService : BaseService<GroupService>, IGroupService
 
         var dto = _mapper.Map<GroupDto>(group);
         IList<Part> parts = await _unitOfWork.GetRepository<Part>().GetAllAsync();
-        dto.Parts = GtCore.Filter(parts, p => p.Opitz, group, g => g.Matrix).Select(_mapper.Map<Part, PartDto>);
+        dto.Parts = GtCore.Filter(parts, p => p.Opitz, group.Matrix).Select(_mapper.Map<Part, PartDto>);
 
-        return new ApiResponse<GroupDto>();
+        return new ApiResponse<GroupDto>(dto);
     }
 
     public async Task<ApiResponse<List<GroupDto>>> GetGroupsAsync()
@@ -61,7 +61,7 @@ public class GroupService : BaseService<GroupService>, IGroupService
         IList<Part> parts = await _unitOfWork.GetRepository<Part>().GetAllAsync();
         foreach (GroupDto dto in dtos)
         {
-            dto.Parts = GtCore.Filter(parts, p => p.Opitz, groups.First(g => g.Id == dto.Id), g => g.Matrix)
+            dto.Parts = GtCore.Filter(parts, p => p.Opitz, dto.Matrix)
                 .Select(_mapper.Map<Part, PartDto>);
         }
 
@@ -75,5 +75,24 @@ public class GroupService : BaseService<GroupService>, IGroupService
         await _unitOfWork.SaveChangesAsync();
 
         return new ApiResponse(HttpStatusCode.NoContent);
+    }
+
+    public async Task<ApiResponse<List<GroupDto>>> SearchGroups(string opitz)
+    {
+        IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
+        IList<Group> groups = await repo.GetAllAsync(
+            include: source => source.Include(p => p.Procedures),
+            orderBy: order => order.OrderBy(p => p.Description));
+
+        IReadOnlyCollection<GroupDto> dtos = groups.Where(g => GtCore.Match(opitz, g.Matrix))
+            .Select(_mapper.Map<Group, GroupDto>).ToList();
+        IList<Part> parts = await _unitOfWork.GetRepository<Part>().GetAllAsync();
+        foreach (GroupDto dto in dtos)
+        {
+            dto.Parts = GtCore.Filter(parts, p => p.Opitz, dto.Matrix)
+                .Select(_mapper.Map<Part, PartDto>);
+        }
+
+        return new ApiResponse<List<GroupDto>>(dtos.ToList());
     }
 }

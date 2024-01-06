@@ -13,19 +13,15 @@ public static class GtCore
     /// </summary>
     public static string Version { get; } = "1.0.0";
 
-    public static IEnumerable<TPart> Filter<TGroup, TPart>(
+    public static IEnumerable<TPart> Filter<TPart>(
         IEnumerable<TPart> parts,
         Func<TPart, string> opitz,
-        TGroup group,
-        Func<TGroup, string> matrix)
-        where TGroup : class
-        where TPart : class
+        string matrix) where TPart : class
     {
-        string matrixString = matrix(group);
-        return parts.Where(p => Match(opitz(p), matrixString));
+        return parts.Where(p => Match(opitz(p), matrix));
     }
 
-    private static bool Match(string opitz, string matrix)
+    public static bool Match(string opitz, string matrix)
     {
         if (opitz.Length != 9 || matrix.Length != 90)
         {

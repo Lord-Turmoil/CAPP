@@ -9,4 +9,6 @@ public interface IGroupService
     Task<ApiResponse<GroupDto>> GetGroupAsync(int id);
     Task<ApiResponse<List<GroupDto>>> GetGroupsAsync();
     Task<ApiResponse> DeleteGroupAsync(int id);
+
+    Task<ApiResponse<List<GroupDto>>> SearchGroups(string opitz);
 }

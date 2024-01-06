@@ -41,4 +41,10 @@ public class GroupController : BaseController<GroupController>
     {
         return _service.DeleteGroupAsync(id);
     }
+
+    [HttpGet]
+    public Task<ApiResponse<List<GroupDto>>> SearchGroups(string opitz)
+    {
+        return _service.SearchGroups(opitz);
+    }
 }
