@@ -45,6 +45,7 @@ public class GroupService : BaseService<GroupService>, IGroupService
 
         group.Description = description;
         group.Matrix = matrix;
+        group.UpdatedAt = DateTime.UtcNow;
 
         await _unitOfWork.SaveChangesAsync();
 

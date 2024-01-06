@@ -25,7 +25,7 @@ public class PartController : BaseController<PartController>
         return _service.CreatePartAsync(name, opitz);
     }
 
-    [HttpPost]
+    [HttpPut]
     public Task<ApiResponse<PartDto>> UpdatePartAsync(int id, string name, string opitz)
     {
         return _service.UpdatePartAsync(id, name, opitz);

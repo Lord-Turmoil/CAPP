@@ -27,6 +27,7 @@ class PartsViewModel : NavigationViewModel
         _service = service;
 
         CreatePartCommand = new DelegateCommand(CreatePart);
+        UpdatePartCommand = new DelegateCommand(UpdatePart);
         DeleteSelectedCommand = new DelegateCommand(DeleteSelectedPart);
 
         AllParts = new ObservableCollection<PartDto>();
@@ -47,9 +48,19 @@ class PartsViewModel : NavigationViewModel
         set => SetProperty(ref _allParts, value);
     }
 
-    public PartDto? SelectedPart { get; set; }
+    private PartDto? _selectedPart = null!;
+    public PartDto? SelectedPart {
+        get => _selectedPart;
+        set {
+            if (SetProperty(ref _selectedPart, value))
+            {
+                OnSelectedPartChange(value);
+            }
+        }
+    }
 
     public DelegateCommand CreatePartCommand { get; }
+    public DelegateCommand UpdatePartCommand { get; }
     public DelegateCommand DeleteSelectedCommand { get; }
 
 
@@ -68,6 +79,25 @@ class PartsViewModel : NavigationViewModel
             // Clear input to prevent consecutive invocation.
             Name = "";
             Opitz = "";
+        }
+    }
+
+    private async void UpdatePart()
+    {
+        if (SelectedPart == null)
+        {
+            return;
+        }
+
+        string name = string.IsNullOrWhiteSpace(Name) ? SelectedPart.Name : Name;
+        string opitz = string.IsNullOrWhiteSpace(Opitz) ? SelectedPart.Opitz : Opitz;
+
+        PartDto? part = await UpdatePartImpl(SelectedPart.Id, name, opitz);
+        if (part != null)
+        {
+            int index = AllParts.IndexOf(SelectedPart);
+            AllParts.RemoveAt(index);
+            AllParts.Insert(index, part);
         }
     }
 
@@ -92,6 +122,15 @@ class PartsViewModel : NavigationViewModel
     {
         base.OnNavigatedTo(navigationContext);
         FetchAllParts();
+    }
+
+    private void OnSelectedPartChange(PartDto? value)
+    {
+        if (value != null)
+        {
+            Name = value.Name;
+            Opitz = value.Opitz;
+        }
     }
 
     private async void FetchAllParts()
@@ -119,6 +158,26 @@ class PartsViewModel : NavigationViewModel
         try
         {
             ApiResponse<PartDto> response = await _service.CreatePartAsync(name, opitz);
+            if (response.Status)
+            {
+                return response.Result!;
+            }
+
+            PopupManager.ShowInvalidResponse(response);
+        }
+        catch (Exception e)
+        {
+            PopupManager.ShowNetworkError(e);
+        }
+
+        return null;
+    }
+
+    private async Task<PartDto?> UpdatePartImpl(int id, string name, string opitz)
+    {
+        try
+        {
+            ApiResponse<PartDto> response = await _service.UpdatePartAsync(id, name, opitz);
             if (response.Status)
             {
                 return response.Result!;

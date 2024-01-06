@@ -14,21 +14,25 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Style="{StaticResource FormEntry}" Margin="10,5,5,5">
+            <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True"
+                    HorizontalAlignment="Stretch">
                 <Label Content="{x:Static ext:Texts.Description}" Style="{StaticResource FormLabel}" />
-                <TextBox Width="400" Style="{StaticResource TextInput}" Text="{Binding Description}" />
-            </StackPanel>
+                <TextBox Width="Auto" Style="{StaticResource TextInput}" Text="{Binding Description}" />
+            </DockPanel>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Command="{Binding ResetCommand}" Content="{x:Static ext:Texts.ResetGroup}"
                         Margin="5,5,5,5" />
-                <Button Grid.Column="1" Command="{Binding CreateCommand}" Content="{x:Static ext:Texts.NewGroup}"
+                <Button Grid.Column="1" Command="{Binding UpdateCommand}" Content="{x:Static ext:Texts.UpdateGroup}"
+                        Margin="5,5,5,5" />
+                <Button Grid.Column="2" Command="{Binding CreateCommand}" Content="{x:Static ext:Texts.NewGroup}"
                         Margin="5,5,10,5" />
             </Grid>
         </Grid>
@@ -37,46 +41,66 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.EditGroup}" Style="{StaticResource Banner}" />
-            <ScrollViewer Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ItemsControl Grid.Row="0" Margin="50,20,0,0" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.AllGroups}" Style="{StaticResource Banner}" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0"
+                        ItemsSource="{Binding AllGroups}"
+                        SelectedItem="{Binding SelectedGroup}"
+                        AutoGenerateColumns="False"
+                        IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Description}"
+                            Binding="{Binding Description}" />
+                        <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.CreatedAt}"
+                            Binding="{Binding CreatedAt}" />
+                        <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
+                            Binding="{Binding UpdatedAt}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ScrollViewer Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ItemsControl Grid.Row="0" Margin="50,20,0,0" HorizontalAlignment="Center"
                                   ItemsSource="{Binding SwatchHeaders}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type models:SwatchItem}">
-                                <TextBlock Width="47" Text="{Binding Id, Mode=OneTime}"
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:SwatchItem}">
+                                    <TextBlock Width="47" Text="{Binding Id, Mode=OneTime}"
                                            Style="{StaticResource FormText}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                    <ItemsControl Grid.Row="1" HorizontalAlignment="Center" ItemsSource="{Binding Swatches}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type models:SwatchSet}">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
-                                    <ItemsControl ItemTemplate="{StaticResource SwatchTemplate}"
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                        <ItemsControl Grid.Row="1" HorizontalAlignment="Center" ItemsSource="{Binding Swatches}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:SwatchSet}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
+                                        <ItemsControl ItemTemplate="{StaticResource SwatchTemplate}"
                                                   ItemsSource="{Binding Items,Mode=OneTime}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <VirtualizingStackPanel Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Grid>
-            </ScrollViewer>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

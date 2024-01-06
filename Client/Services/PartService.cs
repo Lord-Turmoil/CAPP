@@ -17,6 +17,18 @@ class PartService : IPartService
         _client = client;
     }
 
+    public Task<ApiResponse<PartDto>> CreatePartAsync(string name, string opitz)
+    {
+        var request = new BaseRequest($"{Route}CreatePart?name={name}&opitz={opitz}", Method.Post);
+        return _client.ExecuteAsync<PartDto>(request);
+    }
+
+    public Task<ApiResponse<PartDto>> UpdatePartAsync(int id, string name, string opitz)
+    {
+        var request = new BaseRequest($"{Route}UpdatePart?id={id}&name={name}&opitz={opitz}", Method.Put);
+        return _client.ExecuteAsync<PartDto>(request);
+    }
+
     public Task<ApiResponse<PartDto>> GetPartAsync(int id)
     {
         var request = new BaseRequest($"{Route}GetPart?id={id}", Method.Get);
@@ -27,12 +39,6 @@ class PartService : IPartService
     {
         var request = new BaseRequest($"{Route}GetParts", Method.Get);
         return _client.ExecuteAsync<List<PartDto>>(request);
-    }
-
-    public Task<ApiResponse<PartDto>> CreatePartAsync(string name, string opitz)
-    {
-        var request = new BaseRequest($"{Route}CreatePart?name={name}&opitz={opitz}", Method.Post);
-        return _client.ExecuteAsync<PartDto>(request);
     }
 
     public async Task<ApiResponse> DeletePartAsync(int id)

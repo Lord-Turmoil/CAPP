@@ -26,7 +26,7 @@ public class GroupController : BaseController<GroupController>
         return _service.CreateGroupAsync(description, matrix);
     }
 
-    [HttpPost]
+    [HttpPut]
     public Task<ApiResponse<GroupDto>> UpdateGroupAsync(int id, string description, string matrix)
     {
         return _service.UpdateGroupAsync(id, description, matrix);

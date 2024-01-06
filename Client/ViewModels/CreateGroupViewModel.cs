@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
 
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using Client.Extensions;
 using Client.Extensions.Popup;
 using Client.Models;
@@ -29,8 +30,16 @@ class CreateGroupViewModel : NavigationViewModel
         Swatches = SwatchHelper.InitSwatches();
         SwatchHeaders = SwatchHelper.InitSwatchHeaders();
 
+        AllGroups = new ObservableCollection<GroupDto>();
+
         CreateCommand = new DelegateCommand(CreateGroup);
         ResetCommand = new DelegateCommand(ResetGroup);
+    }
+
+    private ObservableCollection<GroupDto> _allGroups = null!;
+    public ObservableCollection<GroupDto> AllGroups {
+        get => _allGroups;
+        set => SetProperty(ref _allGroups, value);
     }
 
     public ObservableCollection<SwatchSet> Swatches {
@@ -89,5 +98,31 @@ class CreateGroupViewModel : NavigationViewModel
         }
 
         return null;
+    }
+
+    public override void OnNavigatedTo(NavigationContext navigationContext)
+    {
+        base.OnNavigatedTo(navigationContext);
+        FetchAllGroups();
+    }
+
+    private async void FetchAllGroups()
+    {
+        try
+        {
+            ApiResponse<List<GroupDto>> response = await _service.GetGroupsAsync();
+            if (response.Status)
+            {
+                AllGroups = new ObservableCollection<GroupDto>(response.Result!);
+            }
+            else
+            {
+                PopupManager.ShowInvalidResponse(response);
+            }
+        }
+        catch (Exception e)
+        {
+            PopupManager.ShowNetworkError(e);
+        }
     }
 }

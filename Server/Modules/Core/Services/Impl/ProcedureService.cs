@@ -52,6 +52,7 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
         }
 
         procedure.Description = description;
+        procedure.UpdatedAt = DateTime.UtcNow;
 
         await _unitOfWork.SaveChangesAsync();
 

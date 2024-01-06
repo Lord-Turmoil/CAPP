@@ -25,7 +25,7 @@ public class ProcedureController : BaseController<ProcedureController>
         return _service.CreateProcedureAsync(groupId, description, order);
     }
 
-    [HttpPost]
+    [HttpPut]
     public Task<ApiResponse<ProcedureDto>> UpdateProcedureAsync(int id, string description)
     {
         return _service.UpdateProcedureAsync(id, description);
