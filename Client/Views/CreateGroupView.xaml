@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True"
                     HorizontalAlignment="Stretch">
-                <Label Content="{x:Static ext:Texts.Description}" Style="{StaticResource FormLabel}" />
+                <Label Content="{x:Static ext:Texts.GroupDescription}" Style="{StaticResource FormLabel}" />
                 <TextBox Width="Auto" Style="{StaticResource TextInput}" Text="{Binding Description}" />
             </DockPanel>
             <Grid Grid.Column="1">
@@ -27,12 +27,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding ResetCommand}" Content="{x:Static ext:Texts.ResetGroup}"
+                <Button Grid.Column="0" Command="{Binding CreateCommand}" Content="{x:Static ext:Texts.NewGroup}"
                         Margin="5,5,5,5" />
                 <Button Grid.Column="1" Command="{Binding UpdateCommand}" Content="{x:Static ext:Texts.UpdateGroup}"
                         Margin="5,5,5,5" />
-                <Button Grid.Column="2" Command="{Binding CreateCommand}" Content="{x:Static ext:Texts.NewGroup}"
+                <Button Grid.Column="2" Command="{Binding ResetCommand}" Content="{x:Static ext:Texts.Reset}"
+                        Margin="5,5,5,5" />
+                <Button Grid.Column="3" Command="{Binding DeleteCommand}" Content="{x:Static ext:Texts.Delete}"
                         Margin="5,5,10,5" />
             </Grid>
         </Grid>

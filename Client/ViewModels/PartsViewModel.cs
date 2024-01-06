@@ -19,7 +19,7 @@ class PartsViewModel : NavigationViewModel
     private readonly IPartService _service;
     private ObservableCollection<PartDto> _allParts = null!;
     private string _name = "";
-    private int _opitz;
+    private string _opitz;
 
     public PartsViewModel(IEventAggregator eventAggregator, IPartService service)
         : base(eventAggregator)
@@ -39,8 +39,8 @@ class PartsViewModel : NavigationViewModel
     }
 
     public string Opitz {
-        get => _opitz == 0 ? "" : _opitz.ToString();
-        set => SetProperty(ref _opitz, GtCore.VerifyOpitz(value));
+        get => _opitz;
+        set => SetProperty(ref _opitz, GtCore.VerifyOpitz(value) ?? "");
     }
 
     public ObservableCollection<PartDto> AllParts {

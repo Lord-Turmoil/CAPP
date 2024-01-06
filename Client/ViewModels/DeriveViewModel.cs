@@ -73,10 +73,7 @@ class DeriveViewModel : NavigationViewModel
 
     public string Query {
         get => _query;
-        set {
-            int opitz = GtCore.VerifyOpitz(value);
-            SetProperty(ref _query, opitz == 0 ? "" : value);
-        }
+        set => SetProperty(ref _query, GtCore.VerifyOpitz(value) ?? "");
     }
 
     public DelegateCommand SearchCommand { get; }

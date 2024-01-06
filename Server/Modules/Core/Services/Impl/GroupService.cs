@@ -23,11 +23,12 @@ public class GroupService : BaseService<GroupService>, IGroupService
     public async Task<ApiResponse<GroupDto>> CreateGroupAsync(string description, string matrix)
     {
         IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
+        var now = DateTime.Now;
         EntityEntry<Group> group = await repo.InsertAsync(new Group {
             Description = description,
             Matrix = matrix,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            CreatedAt = now,
+            UpdatedAt = now
         });
         await _unitOfWork.SaveChangesAsync();
 
@@ -45,7 +46,7 @@ public class GroupService : BaseService<GroupService>, IGroupService
 
         group.Description = description;
         group.Matrix = matrix;
-        group.UpdatedAt = DateTime.UtcNow;
+        group.UpdatedAt = DateTime.Now;
 
         await _unitOfWork.SaveChangesAsync();
 

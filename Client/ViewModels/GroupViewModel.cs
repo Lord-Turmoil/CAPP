@@ -41,6 +41,7 @@ class GroupViewModel : NavigationViewModel
         Swatches = SwatchHelper.InitSwatches();
 
         CreateProcedureCommand = new DelegateCommand(CreateProcedure);
+        UpdateProcedureCommand = new DelegateCommand(UpdateProcedure);
         DeleteSelectedProcedureCommand = new DelegateCommand(DeleteProcedure);
         DeleteSelectedGroupCommand = new DelegateCommand(DeleteGroup);
     }
@@ -70,7 +71,20 @@ class GroupViewModel : NavigationViewModel
         set => SetProperty(ref _allProcedures, value);
     }
 
-    public ProcedureDto? SelectedProcedure { get; set; }
+    private ProcedureDto? _selectedProcedure = null!;
+
+    public ProcedureDto? SelectedProcedure {
+        get => _selectedProcedure;
+        set {
+            if (SetProperty(ref _selectedProcedure, value))
+            {
+                if (value != null)
+                {
+                    Description = value.Description;
+                }
+            }
+        }
+    }
 
     public ObservableCollection<PartDto> PartsInGroup {
         get => _partsInGroup;
@@ -85,6 +99,7 @@ class GroupViewModel : NavigationViewModel
     public IEnumerable<SwatchItem> SwatchHeaders { get; }
 
     public DelegateCommand CreateProcedureCommand { get; }
+    public DelegateCommand UpdateProcedureCommand { get; }
     public DelegateCommand DeleteSelectedProcedureCommand { get; }
     public DelegateCommand DeleteSelectedGroupCommand { get; }
 
@@ -124,6 +139,23 @@ class GroupViewModel : NavigationViewModel
         {
             AllProcedures.Add(procedure);
             Description = "";
+        }
+    }
+
+    private async void UpdateProcedure()
+    {
+        if (SelectedProcedure == null)
+        {
+            return;
+        }
+
+        string description = string.IsNullOrWhiteSpace(Description) ? SelectedProcedure.Description : Description;
+        ProcedureDto? procedure = await UpdateProcedureImpl(SelectedProcedure.Id, description);
+        if (procedure != null)
+        {
+            int index = AllProcedures.IndexOf(SelectedProcedure);
+            AllProcedures.RemoveAt(index);
+            AllProcedures.Insert(index, procedure);
         }
     }
 
@@ -201,6 +233,25 @@ class GroupViewModel : NavigationViewModel
         return null;
     }
 
+    private async Task<ProcedureDto?> UpdateProcedureImpl(int id, string description)
+    {
+        try
+        {
+            ApiResponse<ProcedureDto> response = await _procedureService.UpdateProcedureAsync(id, description);
+            if (response.Status)
+            {
+                return response.Result!;
+            }
+
+            PopupManager.ShowInvalidResponse(response);
+        }
+        catch (Exception e)
+        {
+            PopupManager.ShowNetworkError(e);
+        }
+
+        return null;
+    }
     private async void DeleteProcedureImpl(int id)
     {
         try

@@ -25,6 +25,12 @@ class ProcedureService : IProcedureService
         return _client.ExecuteAsync<ProcedureDto>(request);
     }
 
+    public Task<ApiResponse<ProcedureDto>> UpdateProcedureAsync(int id, string description)
+    {
+        var request = new BaseRequest($"{Route}UpdateProcedure?id={id}&description={description}", Method.Put);
+        return _client.ExecuteAsync<ProcedureDto>(request);
+    }
+
     public Task<ApiResponse> DeleteProcedureAsync(int id)
     {
         var request = new BaseRequest($"{Route}DeleteProcedure?id={id}", Method.Delete);

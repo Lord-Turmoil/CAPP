@@ -39,13 +39,13 @@ public static class GtCore
         return true;
     }
 
-    public static int VerifyOpitz(string opitz)
+    public static string? VerifyOpitz(string opitz)
     {
-        if (opitz.Length == 9 && int.TryParse(opitz, out int value))
+        if (opitz.Length == 9 && int.TryParse(opitz, out _))
         {
-            return value;
+            return opitz;
         }
 
-        return 0;
+        return null;
     }
 }

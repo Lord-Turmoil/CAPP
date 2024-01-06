@@ -32,25 +32,28 @@ static class Texts
     public const string Description = "描述";
     public const string CreatedAt = "创建时间";
     public const string UpdatedAt = "修改时间";
+    public const string Reset = "重置";
     public const string Cancel = "取消";
     public const string Delete = "删除";
 
     public const string NewPart = "创建零件";
     public const string UpdatePart = "修改零件";
     public const string NewGroup = "创建零件族";
-    public const string ResetGroup = "重置零件族";
     public const string UpdateGroup = "修改零件族";
     public const string NewProcedure = "创建工艺步骤";
+    public const string UpdateProcedure = "修改工艺步骤";
 
     public const string AllParts = "所有零件";
     public const string AllGroups = "所有零件族";
     public const string EditGroup = "编辑零件族";
-    public const string StandardProcedures = "标准零件族";
+    public const string StandardProcedures = "标准综合工艺流程";
     public const string PartsInGroup = "零件族中的零件";
     public const string RelatedGroups = "相关零件组装";
     public const string SimilarParts = "相似零件";
 
     public const string Search = "搜索零件族";
+    public const string GroupDescription = "零件族描述";
+    public const string ProcedureDescription = "工艺步骤描述";
 
     /*
      * Form
