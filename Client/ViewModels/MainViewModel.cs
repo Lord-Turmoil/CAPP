@@ -19,7 +19,7 @@ class MainViewModel : BindableBase
         _containerProvider = containerProvider;
         _regionManager = regionManager;
 
-        CreateMenuTabs();
+        MenuTabs = InitMenuTabs();
 
         NavigateCommand = new DelegateCommand<MenuTab>(Navigate);
     }
@@ -36,13 +36,13 @@ class MainViewModel : BindableBase
     public DelegateCommand LoadedCommand => new(() => { NavigateCommand.Execute(MenuTabs[0]); });
 
 
-    private void CreateMenuTabs()
+    private static ObservableCollection<MenuTab> InitMenuTabs()
     {
-        MenuTabs = new ObservableCollection<MenuTab> {
-            new(Texts.Tab0, "IndexView", Texts.Description0),
-            new(Texts.Tab1, "PartsView", Texts.Description1),
-            new(Texts.Tab2, "GroupsView", Texts.Description2),
-            new(Texts.Tab3, "CreateView", Texts.Description3)
+        return new ObservableCollection<MenuTab> {
+            new(Texts.Tab0, Texts.Namespace0, Texts.Description0),
+            new(Texts.Tab1, Texts.Namespace1, Texts.Description1),
+            new(Texts.Tab2, Texts.Namespace2, Texts.Description2),
+            new(Texts.Tab3, Texts.Namespace3, Texts.Description3)
         };
     }
 

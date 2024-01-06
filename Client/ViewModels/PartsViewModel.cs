@@ -25,7 +25,7 @@ class PartsViewModel : BindableBase
         _containerProvider = containerProvider;
         _regionManager = regionManager;
 
-        GetAllParts();
+        AllParts = GetAllParts();
 
         CreatePartCommand = new DelegateCommand(CreatePart);
         DeleteSelectedCommand = new DelegateCommand(DeleteSelectedPart);
@@ -82,9 +82,9 @@ class PartsViewModel : BindableBase
         SelectedPart = null;
     }
 
-    private void GetAllParts()
+    private ObservableCollection<PartDto> GetAllParts()
     {
-        AllParts = new ObservableCollection<PartDto> {
+        return new ObservableCollection<PartDto> {
             new() { Id = 1, Name = "Part 1", Opitz = "123456789" },
             new() { Id = 2, Name = "Part 2", Opitz = "987654321" },
             new() { Id = 3, Name = "Part 3", Opitz = "164382954" },
