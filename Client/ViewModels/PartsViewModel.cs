@@ -1,34 +1,31 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Windows;
+using Client.Services;
 using ImTools;
 using Prism.Commands;
-using Prism.Ioc;
-using Prism.Mvvm;
+using Prism.Events;
 using Prism.Regions;
 using Shared.Dtos;
+using Tonisoft.AspExtensions.Response;
 
 namespace Client.ViewModels;
 
-class PartsViewModel : BindableBase
+class PartsViewModel : NavigationViewModel
 {
-    private readonly IContainerProvider _containerProvider;
-    private readonly IRegionManager _regionManager;
-
     private ObservableCollection<PartDto> _allParts = null!;
-
     private string _name = "";
-
     private int _opitz;
+    private readonly IPartService _service;
 
-    public PartsViewModel(IContainerProvider containerProvider, IRegionManager regionManager)
+    public PartsViewModel(IEventAggregator eventAggregator, IPartService service) 
+        : base(eventAggregator)
     {
-        _containerProvider = containerProvider;
-        _regionManager = regionManager;
-
-        AllParts = GetAllParts();
+        _service = service;
 
         CreatePartCommand = new DelegateCommand(CreatePart);
         DeleteSelectedCommand = new DelegateCommand(DeleteSelectedPart);
+
+        AllParts = new ObservableCollection<PartDto>();
     }
 
     public string Name {
@@ -82,14 +79,43 @@ class PartsViewModel : BindableBase
         SelectedPart = null;
     }
 
-    private ObservableCollection<PartDto> GetAllParts()
+    public override void OnNavigatedTo(NavigationContext navigationContext)
     {
-        return new ObservableCollection<PartDto> {
-            new() { Id = 1, Name = "Part 1", Opitz = "123456789" },
-            new() { Id = 2, Name = "Part 2", Opitz = "987654321" },
-            new() { Id = 3, Name = "Part 3", Opitz = "164382954" },
-            new() { Id = 4, Name = "Part 4", Opitz = "914682375" },
-            new() { Id = 5, Name = "Part 5", Opitz = "192837465" }
-        };
+        base.OnNavigatedTo(navigationContext);
+        FetchAllParts();
+    }
+
+    private async void FetchAllParts()
+    {
+        try
+        {
+            ApiResponse<List<PartDto>> response = await _service.GetPartsAsync();
+            if (!response.Status)
+            {
+                throw new Exception($"Invalid Response: {response.Message}");
+            }
+
+            AllParts = new ObservableCollection<PartDto>(response.Result!.ToList());
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private async Task DeletePartImpl(int id)
+    {
+        try
+        {
+            ApiResponse response = await _service.DeletePartAsync(id);
+            if (!response.Status)
+            {
+                throw new Exception($"Invalid Response: {response.Message}");
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }

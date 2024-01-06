@@ -19,9 +19,9 @@ public class GroupController : BaseController<GroupController>
 
 
     [HttpPost]
-    public Task<ApiResponse<GroupDto>> CreateStepAsync([FromBody] CreateGroupDto dto)
+    public Task<ApiResponse<GroupDto>> CreateGroupAsync(string description, string matrix)
     {
-        return _service.CreateGroupAsync(dto.Description, dto.Matrix);
+        return _service.CreateGroupAsync(description, matrix);
     }
 
     [HttpGet]

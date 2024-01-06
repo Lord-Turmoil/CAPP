@@ -1,7 +1,11 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Events;
+using Prism.Mvvm;
 
 namespace Client.ViewModels;
 
-class IndexViewModel : BindableBase
+class IndexViewModel : NavigationViewModel
 {
+    public IndexViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+    {
+    }
 }

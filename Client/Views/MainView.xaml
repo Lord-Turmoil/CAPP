@@ -6,7 +6,6 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:ext="clr-namespace:Client.Extensions"
-        xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Computer-Aided Process Planning" Height="640" Width="960"

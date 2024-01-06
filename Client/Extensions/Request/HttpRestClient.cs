@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
 using Tonisoft.AspExtensions.Response;
 
@@ -41,7 +40,9 @@ class HttpRestClient : IHttpRestClient
         restRequest.AddHeader("ContentType", request.ContentType);
 
         if (request.Parameter != null)
+        {
             restRequest.AddParameter("param", JsonConvert.SerializeObject(request.Parameter));
+        }
 
         RestResponse response = await _client.ExecuteAsync<TResult>(restRequest);
         if (response.Content == null)

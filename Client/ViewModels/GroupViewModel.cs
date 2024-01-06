@@ -1,22 +1,17 @@
 ﻿using System.Collections.ObjectModel;
-using Prism.Ioc;
-using Prism.Mvvm;
+using Prism.Events;
 using Prism.Regions;
 using Shared.Dtos;
 
 namespace Client.ViewModels;
 
-class GroupViewModel : BindableBase
+class GroupViewModel : NavigationViewModel
 {
-    private readonly IContainerProvider _containerProvider;
-    private readonly IRegionManager _regionManager;
     private ObservableCollection<GroupDto> _allGroups = null!;
 
-    public GroupViewModel(IContainerProvider containerProvider, IRegionManager regionManager)
+    public GroupViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+        : base(eventAggregator)
     {
-        _containerProvider = containerProvider;
-        _regionManager = regionManager;
-
         AllGroups = GetAllGroups();
     }
 
@@ -33,7 +28,7 @@ class GroupViewModel : BindableBase
             new GroupDto { Id = 1, Description = "Group 1" },
             new GroupDto { Id = 2, Description = "Group 2" },
             new GroupDto { Id = 3, Description = "Group 3" },
-            new GroupDto { Id = 4, Description = "Group 4" },
+            new GroupDto { Id = 4, Description = "Group 4" }
         };
 
         return groups;

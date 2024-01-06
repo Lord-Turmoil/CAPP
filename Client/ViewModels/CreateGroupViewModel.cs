@@ -1,23 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using Client.Models;
 using Prism.Commands;
-using Prism.Ioc;
-using Prism.Mvvm;
+using Prism.Events;
 using Prism.Regions;
 
 namespace Client.ViewModels;
 
-class CreateGroupViewModel : BindableBase
+class CreateGroupViewModel : NavigationViewModel
 {
-    private readonly IContainerProvider _containerProvider;
-    private readonly IRegionManager _regionManager;
     private ObservableCollection<SwatchSet> _swatches = null!;
 
-    public CreateGroupViewModel(IContainerProvider containerProvider, IRegionManager regionManager)
+    public CreateGroupViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+        : base(eventAggregator)
     {
-        _containerProvider = containerProvider;
-        _regionManager = regionManager;
-
         Swatches = InitSwatches();
         SwatchHeaders = InitSwatchHeaders();
 
@@ -45,6 +40,7 @@ class CreateGroupViewModel : BindableBase
             {
                 swatchItems.Add(new SwatchItem { Id = i + j * 10 + 1 });
             }
+
             swatchSet.Items = swatchItems;
             swatches.Add(swatchSet);
         }

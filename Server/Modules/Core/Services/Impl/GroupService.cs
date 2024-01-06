@@ -49,7 +49,9 @@ public class GroupService : BaseService<GroupService>, IGroupService
     public async Task<ApiResponse<List<GroupDto>>> GetGroupsAsync()
     {
         IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
-        IList<Group> groups = await repo.GetAllAsync(include: source => source.Include(p => p.Procedures));
+        IList<Group> groups = await repo.GetAllAsync(
+            include: source => source.Include(p => p.Procedures),
+            orderBy: order => order.OrderBy(p => p.Description));
 
         return new ApiResponse<List<GroupDto>>(groups.Select(_mapper.Map<Group, GroupDto>).ToList());
     }

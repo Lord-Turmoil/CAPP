@@ -18,9 +18,9 @@ public class PartController : BaseController<PartController>
     }
 
     [HttpPost]
-    public Task<ApiResponse<PartDto>> CreatePartAsync([FromBody] CreatePartDto dto)
+    public Task<ApiResponse<PartDto>> CreatePartAsync(string name, string opitz)
     {
-        return _service.CreatePartAsync(dto.Name, dto.Opitz);
+        return _service.CreatePartAsync(name, opitz);
     }
 
     [HttpGet]
