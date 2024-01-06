@@ -90,11 +90,9 @@
                            AutoGenerateColumns="False"
                            IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="3*" Header="{x:Static ext:Texts.Description}"
+                            <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Description}"
                             Binding="{Binding Description}" />
-                            <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.CreatedAt}"
-                            Binding="{Binding CreatedAt}" />
-                            <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.UpdatedAt}"
+                            <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
                             Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -154,6 +152,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Name}" Binding="{Binding Name}" />
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Opitz}" Binding="{Binding Opitz}" />
+                            <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}" Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

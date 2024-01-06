@@ -66,6 +66,12 @@ class GroupViewModel : NavigationViewModel
 
     public ProcedureDto? SelectedProcedure { get; set; }
 
+    private ObservableCollection<PartDto> _partsInGroup = null!;
+    public ObservableCollection<PartDto> PartsInGroup {
+        get => _partsInGroup;
+        set => SetProperty(ref _partsInGroup, value);
+    }
+
     private ObservableCollection<SwatchSet> _swatches = null!;
     public ObservableCollection<SwatchSet> Swatches {
         get => _swatches;
@@ -91,6 +97,7 @@ class GroupViewModel : NavigationViewModel
         }
 
         AllProcedures = new ObservableCollection<ProcedureDto>(value.Procedures);
+        PartsInGroup = new ObservableCollection<PartDto>(value.Parts);
         Swatches = SwatchHelper.InitSwatches(value.Matrix);
     }
 
