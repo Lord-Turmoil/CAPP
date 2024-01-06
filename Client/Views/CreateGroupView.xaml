@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True"
-                    HorizontalAlignment="Stretch">
+                       HorizontalAlignment="Stretch">
                 <Label Content="{x:Static ext:Texts.GroupDescription}" Style="{StaticResource FormLabel}" />
                 <TextBox Width="Auto" Style="{StaticResource TextInput}" Text="{Binding Description}" />
             </DockPanel>
@@ -47,21 +47,21 @@
             <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.AllGroups}" Style="{StaticResource Banner}" />
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0"
-                        ItemsSource="{Binding AllGroups}"
-                        SelectedItem="{Binding SelectedGroup}"
-                        AutoGenerateColumns="False"
-                        IsReadOnly="True">
+                          ItemsSource="{Binding AllGroups}"
+                          SelectedItem="{Binding SelectedGroup}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Description}"
-                            Binding="{Binding Description}" />
+                                            Binding="{Binding Description}" />
                         <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.CreatedAt}"
-                            Binding="{Binding CreatedAt}" />
+                                            Binding="{Binding CreatedAt}" />
                         <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
-                            Binding="{Binding UpdatedAt}" />
+                                            Binding="{Binding UpdatedAt}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <ScrollViewer Grid.Column="1">
@@ -71,11 +71,11 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <ItemsControl Grid.Row="0" Margin="50,20,0,0" HorizontalAlignment="Center"
-                                  ItemsSource="{Binding SwatchHeaders}">
+                                      ItemsSource="{Binding SwatchHeaders}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type models:SwatchItem}">
                                     <TextBlock Width="47" Text="{Binding Id, Mode=OneTime}"
-                                           Style="{StaticResource FormText}" />
+                                               Style="{StaticResource FormText}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemsPanel>
@@ -88,9 +88,10 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type models:SwatchSet}">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
+                                        <TextBlock Text="{Binding Name, Mode=OneTime}"
+                                                   Style="{StaticResource FormText}" />
                                         <ItemsControl ItemTemplate="{StaticResource SwatchTemplate}"
-                                                  ItemsSource="{Binding Items,Mode=OneTime}">
+                                                      ItemsSource="{Binding Items,Mode=OneTime}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <VirtualizingStackPanel Orientation="Horizontal" />

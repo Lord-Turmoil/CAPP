@@ -42,7 +42,7 @@ public class PartService : BaseService<PartService>, IPartService
     public async Task<ApiResponse<PartDto>> CreatePartAsync(string name, string opitz)
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
-        var now = DateTime.Now;
+        DateTime now = DateTime.Now;
         EntityEntry<Part> part = await repo.InsertAsync(new Part {
             Name = name,
             Opitz = opitz,

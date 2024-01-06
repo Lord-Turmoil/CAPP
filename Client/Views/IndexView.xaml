@@ -13,8 +13,8 @@
             <StackPanel Style="{StaticResource Paragraph}" Orientation="Horizontal">
                 <TextBlock Style="{StaticResource ParagraphText}" Text="    GitHub 仓库连接：" />
                 <TextBlock Style="{StaticResource ParagraphText}">
-                    <Hyperlink Click="Hyperlink_OnClick" NavigateUri="https://github.com/Lord-Turmoil/CAPP-Planner">
-                        <TextBlock Text="https://github.com/Lord-Turmoil/CAPP-Planner" />
+                    <Hyperlink Click="Hyperlink_OnClick" NavigateUri="https://github.com/Lord-Turmoil/CAPP">
+                        <TextBlock Text="https://github.com/Lord-Turmoil/CAPP" />
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
@@ -23,14 +23,14 @@
             </Grid>
             <Grid Style="{StaticResource Paragraph}">
                 <TextBlock Style="{StaticResource ParagraphText}"
-                           Text="    程序支持“孔加工方法链选择”以及“装夹方案选择”，点击上方菜单进入对应的工艺决策界面，选择加工条件或要求，即可得到所有可能的方案，方案结果会随选择实时更新。" />
+                           Text="    程序支持基于 OPITZ 编码的零件族管理，并提供零件族标准工艺流程添加。此外，支持派生式零件查询。程序使用了前后端的架构，使用时需要在本地同时运行后端和客户端。" />
             </Grid>
             <Grid Style="{StaticResource Section}">
                 <TextBlock Style="{StaticResource SectionText}" Text="开发工具" />
             </Grid>
             <StackPanel Style="{StaticResource Paragraph}" Orientation="Vertical">
                 <TextBlock Style="{StaticResource ParagraphText}" Text="    编程语言：C#" />
-                <TextBlock Style="{StaticResource ParagraphText}" Text="    开发框架：WPF" />
+                <TextBlock Style="{StaticResource ParagraphText}" Text="    开发框架：WPF，ASP.NET Core" />
                 <TextBlock Style="{StaticResource ParagraphText}"
                            Text="    集成开发环境：Visual Studio 2022，Blend for Visual Studio 2022" />
             </StackPanel>

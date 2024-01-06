@@ -26,6 +26,8 @@ class GroupViewModel : NavigationViewModel
     private ObservableCollection<PartDto> _partsInGroup = null!;
     private GroupDto? _selectedGroup;
 
+    private ProcedureDto? _selectedProcedure;
+
     private ObservableCollection<SwatchSet> _swatches = null!;
 
     public GroupViewModel(IEventAggregator eventAggregator, IGroupService groupService,
@@ -70,8 +72,6 @@ class GroupViewModel : NavigationViewModel
         get => _allProcedures;
         set => SetProperty(ref _allProcedures, value);
     }
-
-    private ProcedureDto? _selectedProcedure = null!;
 
     public ProcedureDto? SelectedProcedure {
         get => _selectedProcedure;
@@ -252,6 +252,7 @@ class GroupViewModel : NavigationViewModel
 
         return null;
     }
+
     private async void DeleteProcedureImpl(int id)
     {
         try

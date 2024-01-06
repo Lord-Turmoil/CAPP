@@ -25,7 +25,8 @@ class GroupService : IGroupService
 
     public Task<ApiResponse<GroupDto>> UpdateGroupAsync(int id, string description, string matrix)
     {
-        var request = new BaseRequest($"{Route}UpdateGroup?id={id}&description={description}&matrix={matrix}", Method.Put);
+        var request = new BaseRequest($"{Route}UpdateGroup?id={id}&description={description}&matrix={matrix}",
+            Method.Put);
         return _client.ExecuteAsync<GroupDto>(request);
     }
 

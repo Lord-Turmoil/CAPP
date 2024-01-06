@@ -23,7 +23,7 @@ public class GroupService : BaseService<GroupService>, IGroupService
     public async Task<ApiResponse<GroupDto>> CreateGroupAsync(string description, string matrix)
     {
         IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
-        var now = DateTime.Now;
+        DateTime now = DateTime.Now;
         EntityEntry<Group> group = await repo.InsertAsync(new Group {
             Description = description,
             Matrix = matrix,

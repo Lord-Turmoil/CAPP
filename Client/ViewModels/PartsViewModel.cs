@@ -19,7 +19,9 @@ class PartsViewModel : NavigationViewModel
     private readonly IPartService _service;
     private ObservableCollection<PartDto> _allParts = null!;
     private string _name = "";
-    private string _opitz;
+    private string _opitz = "";
+
+    private PartDto? _selectedPart;
 
     public PartsViewModel(IEventAggregator eventAggregator, IPartService service)
         : base(eventAggregator)
@@ -48,7 +50,6 @@ class PartsViewModel : NavigationViewModel
         set => SetProperty(ref _allParts, value);
     }
 
-    private PartDto? _selectedPart = null!;
     public PartDto? SelectedPart {
         get => _selectedPart;
         set {

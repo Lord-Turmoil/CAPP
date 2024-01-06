@@ -17,7 +17,11 @@ class CreateGroupViewModel : NavigationViewModel
 {
     private readonly IGroupService _service;
 
+    private ObservableCollection<GroupDto> _allGroups = null!;
+
     private string _description = "";
+
+    private GroupDto? _selectedGroup;
 
     private ObservableCollection<SwatchSet> _swatches = null!;
 
@@ -37,14 +41,10 @@ class CreateGroupViewModel : NavigationViewModel
         DeleteCommand = new DelegateCommand(DeleteGroup);
     }
 
-    private ObservableCollection<GroupDto> _allGroups = null!;
-
     public ObservableCollection<GroupDto> AllGroups {
         get => _allGroups;
         set => SetProperty(ref _allGroups, value);
     }
-
-    private GroupDto? _selectedGroup;
 
     public GroupDto? SelectedGroup {
         get => _selectedGroup;

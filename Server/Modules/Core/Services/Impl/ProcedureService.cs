@@ -29,7 +29,7 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
             return new ApiResponse<ProcedureDto>("Not found");
         }
 
-        var now = DateTime.Now;
+        DateTime now = DateTime.Now;
         EntityEntry<Procedure> procedure = await procedureRepo.InsertAsync(new Procedure {
             Group = group,
             Description = description,

@@ -4,45 +4,42 @@ using Microsoft.EntityFrameworkCore;
 using Server.Modules;
 using Tonisoft.AspExtensions.Module;
 
-namespace Server
+namespace Server;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+
+        builder.Services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        builder.Services.AddUnitOfWork<CappDbContext>();
+        builder.Services.AddDbContext<CappDbContext>(options =>
+            options.UseSqlite("Data Source=Database.db"));
+        builder.Services.RegisterModules();
+
+        var autoMapperConfig = new MapperConfiguration(config => { config.AddProfile(new AutoMapperProfile()); });
+        builder.Services.AddSingleton(autoMapperConfig.CreateMapper());
+
+        WebApplication app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-            builder.Services.AddUnitOfWork<CappDbContext>();
-            builder.Services.AddDbContext<CappDbContext>(options =>
-                options.UseSqlite("Data Source=Database.db"));
-            builder.Services.RegisterModules();
-
-            var autoMapperConfig = new MapperConfiguration(config => {
-                config.AddProfile(new AutoMapperProfile());
-            });
-            builder.Services.AddSingleton(autoMapperConfig.CreateMapper());
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            app.Run();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
