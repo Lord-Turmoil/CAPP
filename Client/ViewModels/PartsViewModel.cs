@@ -44,6 +44,8 @@ class PartsViewModel : NavigationViewModel
         set => SetProperty(ref _allParts, value);
     }
 
+    private PartDto? _selectedPart;
+
     public PartDto? SelectedPart { get; set; }
 
     public DelegateCommand CreatePartCommand { get; }
@@ -59,24 +61,38 @@ class PartsViewModel : NavigationViewModel
         return 0;
     }
 
-    private void CreatePart()
+    private async void CreatePart()
     {
         if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrEmpty(Opitz))
         {
             return;
         }
 
-        AllParts.Add(new PartDto { Id = AllParts.Count + 1, Name = Name, Opitz = Opitz });
+        PartDto? part = await CreatePartImpl(Name, Opitz);
+        if (part != null)
+        {
+            AllParts.Add(part);
+        }
+
+        // Clear input to prevent consecutive invocation.
+        Name = "";
+        Opitz = "";
     }
 
-    private void DeleteSelectedPart()
+    private async void DeleteSelectedPart()
     {
         if (SelectedPart == null)
         {
             return;
         }
 
-        AllParts.FindFirst(p => p.Id == SelectedPart.Id).Do(p => AllParts.Remove(p));
+        PartDto? part = AllParts.FindFirst(p => p.Id == SelectedPart.Id);
+        if (part != null)
+        {
+            await DeletePartImpl(part.Id);
+            AllParts.Remove(part);
+        }
+
         SelectedPart = null;
     }
 
@@ -105,6 +121,29 @@ class PartsViewModel : NavigationViewModel
         {
             PopupManager.ShowNetworkError(e);
         }
+    }
+
+    private async Task<PartDto?> CreatePartImpl(string name, string opitz)
+    {
+        PartDto? part = null;
+        try
+        {
+            ApiResponse<PartDto> response = await _service.CreatePartAsync(name, opitz);
+            if (response.Status)
+            {
+                part = response.Result!;
+            }
+            else
+            {
+                PopupManager.ShowInvalidResponse(response);
+            }
+        }
+        catch (Exception e)
+        {
+            PopupManager.ShowNetworkError(e);
+        }
+
+        return part;
     }
 
     private async Task DeletePartImpl(int id)

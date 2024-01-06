@@ -19,4 +19,9 @@ static class PopupManager
     {
         MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
+
+    public static void ShowError(string message)
+    {
+        MessageBox.Show($"Error:\n{message}", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+    }
 }

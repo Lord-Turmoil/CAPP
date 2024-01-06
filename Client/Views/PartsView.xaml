@@ -44,7 +44,7 @@
             <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.AllParts}" Style="{StaticResource Banner}" />
             <DataGrid Grid.Row="1"
                       ItemsSource="{Binding AllParts}"
-                      SelectedItem="{Binding SelectedGroup}"
+                      SelectedItem="{Binding SelectedPart}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
                 <DataGrid.Columns>
