@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using Client.Extensions;
 using Client.Extensions.Popup;
+using Client.Models;
 using Client.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -28,6 +30,9 @@ class GroupViewModel : NavigationViewModel
         _procedureService = procedureService;
 
         AllGroups = new ObservableCollection<GroupDto>();
+
+        SwatchHeaders = SwatchHelper.InitSwatchHeaders();
+        Swatches = SwatchHelper.InitSwatches();
 
         CreateProcedureCommand = new DelegateCommand(CreateProcedure);
         DeleteSelectedProcedureCommand = new DelegateCommand(DeleteProcedure);
@@ -61,6 +66,13 @@ class GroupViewModel : NavigationViewModel
 
     public ProcedureDto? SelectedProcedure { get; set; }
 
+    private ObservableCollection<SwatchSet> _swatches = null!;
+    public ObservableCollection<SwatchSet> Swatches {
+        get => _swatches;
+        set => SetProperty(ref _swatches, value);
+    }
+    public IEnumerable<SwatchItem> SwatchHeaders { get; }
+
     public DelegateCommand CreateProcedureCommand { get; }
     public DelegateCommand DeleteSelectedProcedureCommand { get; }
     public DelegateCommand DeleteSelectedGroupCommand { get; }
@@ -79,6 +91,7 @@ class GroupViewModel : NavigationViewModel
         }
 
         AllProcedures = new ObservableCollection<ProcedureDto>(value.Procedures);
+        Swatches = SwatchHelper.InitSwatches(value.Matrix);
     }
 
     private async void CreateProcedure()
@@ -93,8 +106,7 @@ class GroupViewModel : NavigationViewModel
             return;
         }
 
-        ProcedureDto? procedure =
-            await CreateProcedureImpl(SelectedGroup.Id, Description, SelectedGroup.Procedures.Count);
+        ProcedureDto? procedure = await CreateProcedureImpl(SelectedGroup.Id, Description, SelectedGroup.Procedures.Count());
         if (procedure != null)
         {
             AllProcedures.Add(procedure);
@@ -102,7 +114,7 @@ class GroupViewModel : NavigationViewModel
         }
     }
 
-    private async void DeleteProcedure()
+    private void DeleteProcedure()
     {
         if (SelectedProcedure == null)
         {
@@ -119,7 +131,7 @@ class GroupViewModel : NavigationViewModel
         SelectedProcedure = null;
     }
 
-    public async void DeleteGroup()
+    private void DeleteGroup()
     {
         if (SelectedGroup == null)
         {

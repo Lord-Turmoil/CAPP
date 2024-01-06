@@ -8,5 +8,7 @@ public class GroupDto : TimestampDto
     public string Description { get; set; } = null!;
     public string Matrix { get; set; } = null!;
 
-    public ICollection<ProcedureDto> Procedures { get; set; } = null!;
+    public IEnumerable<ProcedureDto> Procedures { get; set; } = null!;
+
+    public IEnumerable<PartDto> Parts { get; set; } = null!;
 }

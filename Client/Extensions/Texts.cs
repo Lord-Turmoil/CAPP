@@ -46,6 +46,7 @@ static class Texts
 
     public const string StandardProcedures = "Standard Procedures";
 
+    public const string PartsInGroup = "Parts in Group";
     /*
      * Form
      */

@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Views/Styles/IndexStyle.xaml" />
                 <ResourceDictionary Source="Views/Styles/FormStyle.xaml" />
                 <ResourceDictionary Source="Views/Templates/MenuTabTemplate.xaml" />
+                <ResourceDictionary Source="Views/Templates/SwatchTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

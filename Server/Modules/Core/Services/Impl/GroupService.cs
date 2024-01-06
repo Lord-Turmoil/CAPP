@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Server.Modules.Core.Models;
+using Shared.Common;
 using Shared.Dtos;
 using Tonisoft.AspExtensions.Module;
 using Tonisoft.AspExtensions.Response;
@@ -42,7 +43,11 @@ public class GroupService : BaseService<GroupService>, IGroupService
             return new ApiResponse<GroupDto>("Not found");
         }
 
-        return new ApiResponse<GroupDto>(_mapper.Map<GroupDto>(group));
+        var dto = _mapper.Map<GroupDto>(group);
+        IList<Part> parts = await _unitOfWork.GetRepository<Part>().GetAllAsync();
+        dto.Parts = GtCore.Filter(parts, p => p.Opitz, group, g => g.Matrix).Select(_mapper.Map<Part, PartDto>);
+
+        return new ApiResponse<GroupDto>();
     }
 
     public async Task<ApiResponse<List<GroupDto>>> GetGroupsAsync()
@@ -52,7 +57,15 @@ public class GroupService : BaseService<GroupService>, IGroupService
             include: source => source.Include(p => p.Procedures),
             orderBy: order => order.OrderBy(p => p.Description));
 
-        return new ApiResponse<List<GroupDto>>(groups.Select(_mapper.Map<Group, GroupDto>).ToList());
+        IReadOnlyCollection<GroupDto> dtos = groups.Select(_mapper.Map<Group, GroupDto>).ToList();
+        IList<Part> parts = await _unitOfWork.GetRepository<Part>().GetAllAsync();
+        foreach (GroupDto dto in dtos)
+        {
+            dto.Parts = GtCore.Filter(parts, p => p.Opitz, groups.First(g => g.Id == dto.Id), g => g.Matrix)
+                .Select(_mapper.Map<Part, PartDto>);
+        }
+
+        return new ApiResponse<List<GroupDto>>(dtos.ToList());
     }
 
     public async Task<ApiResponse> DeleteGroupAsync(int id)

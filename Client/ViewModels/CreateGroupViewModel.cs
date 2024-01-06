@@ -16,6 +16,8 @@ class CreateGroupViewModel : NavigationViewModel
 {
     private readonly IGroupService _service;
 
+    private string _description = "";
+
     private ObservableCollection<SwatchSet> _swatches = null!;
 
     public CreateGroupViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, IGroupService service)
@@ -23,8 +25,8 @@ class CreateGroupViewModel : NavigationViewModel
     {
         _service = service;
 
-        Swatches = InitSwatches();
-        SwatchHeaders = InitSwatchHeaders();
+        Swatches = SwatchHelper.InitSwatches();
+        SwatchHeaders = SwatchHelper.InitSwatchHeaders();
 
         CreateCommand = new DelegateCommand(CreateGroup);
         ResetCommand = new DelegateCommand(ResetGroup);
@@ -40,46 +42,15 @@ class CreateGroupViewModel : NavigationViewModel
     public DelegateCommand ResetCommand { get; }
     public DelegateCommand CreateCommand { get; }
 
-    private string _description;
-
     public string Description {
         get => _description;
         set => SetProperty(ref _description, value);
     }
 
-    private static ObservableCollection<SwatchSet> InitSwatches()
-    {
-        var swatches = new ObservableCollection<SwatchSet>();
-        for (int i = 0; i < 10; i++)
-        {
-            var swatchSet = new SwatchSet { Name = $"{i}" };
-            var swatchItems = new List<SwatchItem>();
-            for (int j = 0; j < 9; j++)
-            {
-                swatchItems.Add(new SwatchItem { Id = i + j * 10 + 1 });
-            }
-
-            swatchSet.Items = swatchItems;
-            swatches.Add(swatchSet);
-        }
-
-        return swatches;
-    }
-
-    private static IEnumerable<SwatchItem> InitSwatchHeaders()
-    {
-        var swatchHeaders = new List<SwatchItem>();
-        for (int i = 0; i < 9; i++)
-        {
-            swatchHeaders.Add(new SwatchItem { Id = i + 1 });
-        }
-
-        return swatchHeaders;
-    }
 
     private void ResetGroup()
     {
-        Swatches = InitSwatches();
+        Swatches = SwatchHelper.InitSwatches();
     }
 
     private async void CreateGroup()
@@ -89,16 +60,8 @@ class CreateGroupViewModel : NavigationViewModel
             return;
         }
 
-        var builder = new StringBuilder();
-        foreach (var swatchSet in Swatches)
-        {
-            foreach (var swatchItem in swatchSet.Items)
-            {
-                builder.Append(swatchItem.IsChecked ? "1" : "0");
-            }
-        }
-
-        GroupDto? group = await CreateGroupImpl(Description, builder.ToString());
+        string matrix = SwatchHelper.GetSwatchString(Swatches.SelectMany(s => s.Items));
+        GroupDto? group = await CreateGroupImpl(Description, matrix);
         if (group != null)
         {
             ResetGroup();

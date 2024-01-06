@@ -31,6 +31,11 @@ public partial class IndexView : UserControl
     private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
     {
         var link = sender as Hyperlink;
+        if (link == null)
+        {
+            return;
+        }
+
         var psi = new ProcessStartInfo {
             FileName = link.NavigateUri.AbsoluteUri,
             UseShellExecute = true

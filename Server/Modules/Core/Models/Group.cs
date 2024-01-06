@@ -19,5 +19,5 @@ public class Group : TimestampModel
     [MaxLength(127)]
     public string Matrix { get; set; } = null!;
 
-    public ICollection<Procedure> Procedures { get; set; } = null!;
+    public IEnumerable<Procedure> Procedures { get; set; } = null!;
 }
