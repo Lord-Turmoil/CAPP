@@ -6,6 +6,7 @@ using ImTools;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
+using Shared.Common;
 using Shared.Dtos;
 using Tonisoft.AspExtensions.Response;
 
@@ -36,7 +37,7 @@ class PartsViewModel : NavigationViewModel
 
     public string Opitz {
         get => _opitz == 0 ? "" : _opitz.ToString();
-        set => SetProperty(ref _opitz, VerifyOpitz(value));
+        set => SetProperty(ref _opitz, GtCore.VerifyOpitz(value));
     }
 
     public ObservableCollection<PartDto> AllParts {
@@ -49,15 +50,7 @@ class PartsViewModel : NavigationViewModel
     public DelegateCommand CreatePartCommand { get; }
     public DelegateCommand DeleteSelectedCommand { get; }
 
-    private static int VerifyOpitz(string opitz)
-    {
-        if (opitz.Length == 9 && int.TryParse(opitz, out int value))
-        {
-            return value;
-        }
-
-        return 0;
-    }
+   
 
     private async void CreatePart()
     {

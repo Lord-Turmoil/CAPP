@@ -20,10 +20,10 @@
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True" HorizontalAlignment="Stretch">
                 <Label Content="{x:Static ext:Texts.Opitz}" Style="{StaticResource FormLabel}" />
-                <TextBox Width="Auto" Style="{StaticResource NumberInput}" Text="{Binding Description}" />
+                <TextBox Width="Auto" Style="{StaticResource NumberInput}" Text="{Binding Query}" />
             </DockPanel>
             <Grid Grid.Column="1">
-                <Button Grid.Column="0" Command="{Binding CreateProcedureCommand}"
+                <Button Grid.Column="0" Command="{Binding SearchCommand}"
                     Content="{x:Static ext:Texts.Search}" Margin="5,5,5,5" />
             </Grid>
         </Grid>
@@ -45,6 +45,7 @@
                     <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.RelatedGroups}" Style="{StaticResource Banner}" />
                     <DataGrid Grid.Row="1"
                        ItemsSource="{Binding AllGroups}"
+                       SelectedItem="{Binding SelectedGroup}"
                        AutoGenerateColumns="False"
                        IsReadOnly="True">
                         <DataGrid.Columns>

@@ -38,4 +38,10 @@ class GroupService : IGroupService
         var request = new BaseRequest($"{Route}DeleteGroup?id={id}", Method.Delete);
         return _client.ExecuteAsync(request);
     }
+
+    public Task<ApiResponse<List<GroupDto>>> SearchGroupsAsync(string opitz)
+    {
+        var request = new BaseRequest($"{Route}SearchGroups?opitz={opitz}", Method.Get);
+        return _client.ExecuteAsync<List<GroupDto>>(request);
+    }
 }
