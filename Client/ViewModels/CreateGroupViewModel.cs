@@ -11,7 +11,7 @@ class CreateGroupViewModel : BindableBase
 {
     private readonly IContainerProvider _containerProvider;
     private readonly IRegionManager _regionManager;
-    private ObservableCollection<SwatchSet> _swatches;
+    private ObservableCollection<SwatchSet> _swatches = null!;
 
     public CreateGroupViewModel(IContainerProvider containerProvider, IRegionManager regionManager)
     {
