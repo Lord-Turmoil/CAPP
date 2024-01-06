@@ -98,9 +98,8 @@ class GroupViewModel : NavigationViewModel
         if (procedure != null)
         {
             AllProcedures.Add(procedure);
+            Description = "";
         }
-
-        Description = "";
     }
 
     private async void DeleteProcedure()

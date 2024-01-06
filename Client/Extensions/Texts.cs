@@ -51,4 +51,9 @@ static class Texts
      */
     public const string PleaseInputText = "Please Input Text";
     public const string PleaseInputNumber = "Please Input Number";
+
+    /*
+     * Messages
+     */
+    public const string GroupCreated = "Group Created";
 }

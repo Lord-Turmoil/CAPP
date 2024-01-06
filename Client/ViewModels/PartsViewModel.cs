@@ -44,8 +44,6 @@ class PartsViewModel : NavigationViewModel
         set => SetProperty(ref _allParts, value);
     }
 
-    private PartDto? _selectedPart;
-
     public PartDto? SelectedPart { get; set; }
 
     public DelegateCommand CreatePartCommand { get; }
@@ -72,11 +70,12 @@ class PartsViewModel : NavigationViewModel
         if (part != null)
         {
             AllParts.Add(part);
+
+            // Clear input to prevent consecutive invocation.
+            Name = "";
+            Opitz = "";
         }
 
-        // Clear input to prevent consecutive invocation.
-        Name = "";
-        Opitz = "";
     }
 
     private async void DeleteSelectedPart()

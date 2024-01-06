@@ -17,11 +17,16 @@ static class PopupManager
 
     public static void ShowNetworkError(Exception e)
     {
-        MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show($"Error:\n{e.Message}\nPlease check if backend server is running or not.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
 
     public static void ShowError(string message)
     {
         MessageBox.Show($"Error:\n{message}", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+    }
+
+    public static void Success(string message)
+    {
+        MessageBox.Show(message, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }
