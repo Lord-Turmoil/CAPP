@@ -15,9 +15,9 @@ static class Texts
     public const string Tab2 = "Create Group";
     public const string Namespace2 = "CreateGroupView";
     public const string Description2 = "Create Group";
-    public const string Tab3 = "Group";
+    public const string Tab3 = "Groups";
     public const string Namespace3 = "GroupView";
-    public const string Description3 = "Group";
+    public const string Description3 = "Groups";
     public const string Tab4 = "Create";
     public const string Namespace4 = "CreateView";
     public const string Description4 = "Create";
@@ -27,6 +27,7 @@ static class Texts
      */
     public const string Name = "Name";
     public const string Opitz = "OPITZ Code";
+    public const string Description = "Description";
     public const string CreatedAt = "CreatedAt";
     public const string UpdatedAt = "UpdatedAt";
     public const string NewPart = "Add New Part";
@@ -40,6 +41,10 @@ static class Texts
 
     public const string NewGroup = "Add New Group";
     public const string ResetGroup = "Reset Group";
+
+    public const string NewProcedure = "Add New Procedure";
+
+    public const string StandardProcedures = "Standard Procedures";
 
     /*
      * Form

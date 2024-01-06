@@ -36,7 +36,6 @@
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
         <Setter Property="MaxLines" Value="1"></Setter>
-        <Setter Property="MaxLength" Value="10"></Setter>
         <Setter Property="AutomationProperties.HelpText" Value="{x:Static ext:Texts.PleaseInputText}"></Setter>
     </Style>
     

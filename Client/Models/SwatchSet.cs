@@ -2,6 +2,6 @@
 
 class SwatchSet
 {
-    public string Name { get; set; }
-    public IEnumerable<SwatchItem> Items { get; set; }
+    public string Name { get; set; } = null!;
+    public IEnumerable<SwatchItem> Items { get; set; } = null!;
 }
