@@ -1,12 +1,11 @@
 ﻿<UserControl x:Class="Client.Views.DeriveView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Client.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ext="clr-namespace:Client.Extensions"
              xmlns:models="clr-namespace:Client.Models"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,13 +17,14 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True" HorizontalAlignment="Stretch">
+            <DockPanel Grid.Column="0" Style="{StaticResource FormEntryDock}" Margin="10,5,5,5" LastChildFill="True"
+                       HorizontalAlignment="Stretch">
                 <Label Content="{x:Static ext:Texts.Opitz}" Style="{StaticResource FormLabel}" />
                 <TextBox Width="Auto" Style="{StaticResource NumberInput}" Text="{Binding Query}" />
             </DockPanel>
             <Grid Grid.Column="1">
                 <Button Grid.Column="0" Command="{Binding SearchCommand}"
-                    Content="{x:Static ext:Texts.Search}" Margin="5,5,5,5" />
+                        Content="{x:Static ext:Texts.Search}" Margin="5,5,5,5" />
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
@@ -44,17 +44,17 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.RelatedGroups}" Style="{StaticResource Banner}" />
                     <DataGrid Grid.Row="1"
-                       ItemsSource="{Binding AllGroups}"
-                       SelectedItem="{Binding SelectedGroup}"
-                       AutoGenerateColumns="False"
-                       IsReadOnly="True">
+                              ItemsSource="{Binding AllGroups}"
+                              SelectedItem="{Binding SelectedGroup}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Description}"
-                        Binding="{Binding Description}" />
+                                                Binding="{Binding Description}" />
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.CreatedAt}"
-                        Binding="{Binding CreatedAt}" />
+                                                Binding="{Binding CreatedAt}" />
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
-                        Binding="{Binding UpdatedAt}" />
+                                                Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -63,35 +63,37 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.StandardProcedures}" Style="{StaticResource Banner}" />
+                    <TextBlock Grid.Row="0" Text="{x:Static ext:Texts.StandardProcedures}"
+                               Style="{StaticResource Banner}" />
                     <DataGrid Grid.Row="1"
-                       ItemsSource="{Binding AllProcedures}"
-                       AutoGenerateColumns="False"
-                       IsReadOnly="True">
+                              ItemsSource="{Binding AllProcedures}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Description}"
-                        Binding="{Binding Description}" />
+                                                Binding="{Binding Description}" />
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
-                        Binding="{Binding UpdatedAt}" />
+                                                Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ItemsControl Grid.Row="0" Margin="35,0,0,0" HorizontalAlignment="Center"
-                         ItemsSource="{Binding SwatchHeaders}">
+                                  ItemsSource="{Binding SwatchHeaders}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type models:SwatchItem}">
-                                <TextBlock Width="26" FontSize="14" Text="{Binding Id, Mode=OneTime}" Style="{StaticResource FormText}" />
+                                <TextBlock Width="26" Text="{Binding Id, Mode=OneTime}"
+                                           Style="{StaticResource FormText}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
@@ -104,9 +106,9 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type models:SwatchSet}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name, Mode=OneTime}" FontSize="14" Style="{StaticResource FormText}" />
+                                    <TextBlock Text="{Binding Name, Mode=OneTime}" Style="{StaticResource FormText}" />
                                     <ItemsControl ItemTemplate="{StaticResource ReadonlySwatchTemplate}"
-                                       ItemsSource="{Binding Items,Mode=OneTime}">
+                                                  ItemsSource="{Binding Items,Mode=OneTime}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <VirtualizingStackPanel Orientation="Horizontal" />
@@ -120,18 +122,19 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{x:Static ext:Texts.SimilarParts}" Style="{StaticResource Banner}"></TextBlock>
+                    <TextBlock Text="{x:Static ext:Texts.SimilarParts}" Style="{StaticResource Banner}" />
                     <DataGrid Grid.Row="1"
-                        ItemsSource="{Binding AllParts}"
-                        AutoGenerateColumns="False"
-                        IsReadOnly="True">
+                              ItemsSource="{Binding AllParts}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Name}" Binding="{Binding Name}" />
                             <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Opitz}" Binding="{Binding Opitz}" />
-                            <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}" Binding="{Binding UpdatedAt}" />
+                            <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}"
+                                                Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

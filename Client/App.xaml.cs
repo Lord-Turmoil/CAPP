@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Windows;
 using Client.Extensions.Request;
 using Client.Services;
 using Client.ViewModels;

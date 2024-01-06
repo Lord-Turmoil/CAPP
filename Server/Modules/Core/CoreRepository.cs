@@ -1,5 +1,6 @@
-﻿using Arch.EntityFrameworkCore.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Arch.EntityFrameworkCore.UnitOfWork;
 using Server.Modules.Core.Models;
 
 namespace Server.Modules.Core;

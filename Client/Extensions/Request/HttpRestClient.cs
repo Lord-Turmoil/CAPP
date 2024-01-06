@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Newtonsoft.Json;
 using RestSharp;
 using Tonisoft.AspExtensions.Response;
 

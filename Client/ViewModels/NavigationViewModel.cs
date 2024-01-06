@@ -1,4 +1,6 @@
-﻿using Prism.Events;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 

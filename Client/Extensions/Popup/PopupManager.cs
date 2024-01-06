@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Windows;
 using Tonisoft.AspExtensions.Response;
 
 namespace Client.Extensions.Popup;
@@ -17,7 +19,8 @@ static class PopupManager
 
     public static void ShowNetworkError(Exception e)
     {
-        MessageBox.Show($"Error:\n{e.Message}\nPlease check if backend server is running or not.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show($"Error:\n{e.Message}\nPlease check if backend server is running or not.", "Error",
+            MessageBoxButton.OK, MessageBoxImage.Error);
     }
 
     public static void ShowError(string message)

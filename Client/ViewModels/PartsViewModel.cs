@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Collections.ObjectModel;
 using System.Windows;
 using Client.Extensions.Popup;
 using Client.Services;
@@ -14,10 +16,10 @@ namespace Client.ViewModels;
 
 class PartsViewModel : NavigationViewModel
 {
+    private readonly IPartService _service;
     private ObservableCollection<PartDto> _allParts = null!;
     private string _name = "";
     private int _opitz;
-    private readonly IPartService _service;
 
     public PartsViewModel(IEventAggregator eventAggregator, IPartService service)
         : base(eventAggregator)
@@ -50,7 +52,6 @@ class PartsViewModel : NavigationViewModel
     public DelegateCommand CreatePartCommand { get; }
     public DelegateCommand DeleteSelectedCommand { get; }
 
-   
 
     private async void CreatePart()
     {
@@ -68,7 +69,6 @@ class PartsViewModel : NavigationViewModel
             Name = "";
             Opitz = "";
         }
-
     }
 
     private async void DeleteSelectedPart()
@@ -107,7 +107,6 @@ class PartsViewModel : NavigationViewModel
             {
                 PopupManager.ShowInvalidResponse(response);
             }
-
         }
         catch (Exception e)
         {
@@ -124,6 +123,7 @@ class PartsViewModel : NavigationViewModel
             {
                 return response.Result!;
             }
+
             PopupManager.ShowInvalidResponse(response);
         }
         catch (Exception e)

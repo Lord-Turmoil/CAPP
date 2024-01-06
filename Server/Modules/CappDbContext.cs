@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Microsoft.EntityFrameworkCore;
 using Server.Modules.Core.Models;
 
 namespace Server.Modules;

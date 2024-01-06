@@ -1,9 +1,9 @@
-﻿using System.Net;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Net;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
 using Shared.Dtos;
 using Tonisoft.AspExtensions.Module;
@@ -13,7 +13,8 @@ namespace Server.Modules.Core.Services.Impl;
 
 public class PartService : BaseService<PartService>, IPartService
 {
-    public PartService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<PartService> logger) : base(unitOfWork, mapper, logger)
+    public PartService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<PartService> logger) : base(unitOfWork, mapper,
+        logger)
     {
     }
 

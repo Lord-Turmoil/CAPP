@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;

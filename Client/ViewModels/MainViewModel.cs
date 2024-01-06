@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Collections.ObjectModel;
 using Client.Extensions;
 using Client.Models;
 using Prism.Commands;
@@ -43,7 +45,7 @@ class MainViewModel : BindableBase
             new(Texts.Tab1, Texts.Namespace1, Texts.Description1),
             new(Texts.Tab2, Texts.Namespace2, Texts.Description2),
             new(Texts.Tab3, Texts.Namespace3, Texts.Description3),
-            new(Texts.Tab4, Texts.Namespace4, Texts.Description4),
+            new(Texts.Tab4, Texts.Namespace4, Texts.Description4)
         };
     }
 

@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Text;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Collections.ObjectModel;
 using Client.Extensions;
 using Client.Extensions.Popup;
 using Client.Models;

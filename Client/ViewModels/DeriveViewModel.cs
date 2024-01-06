@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Collections.ObjectModel;
 using Client.Extensions;
 using Client.Extensions.Popup;
 using Client.Models;
@@ -21,6 +23,8 @@ class DeriveViewModel : NavigationViewModel
     private ObservableCollection<PartDto> _allParts = null!;
 
     private ObservableCollection<ProcedureDto> _allProcedures = null!;
+
+    private string _query = null!;
 
     private GroupDto? _selectedGroup;
 
@@ -66,8 +70,6 @@ class DeriveViewModel : NavigationViewModel
     }
 
     public IEnumerable<SwatchItem> SwatchHeaders { get; }
-
-    private string _query = null!;
 
     public string Query {
         get => _query;

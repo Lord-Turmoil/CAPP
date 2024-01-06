@@ -1,4 +1,6 @@
-﻿using Shared.Dtos;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Shared.Dtos;
 using Tonisoft.AspExtensions.Response;
 
 namespace Client.Services;

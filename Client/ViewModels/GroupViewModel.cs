@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Collections.ObjectModel;
 using Client.Extensions;
 using Client.Extensions.Popup;
 using Client.Models;
@@ -20,7 +22,11 @@ class GroupViewModel : NavigationViewModel
     private ObservableCollection<GroupDto> _allGroups = null!;
     private ObservableCollection<ProcedureDto> _allProcedures = null!;
     private string _description = "";
+
+    private ObservableCollection<PartDto> _partsInGroup = null!;
     private GroupDto? _selectedGroup;
+
+    private ObservableCollection<SwatchSet> _swatches = null!;
 
     public GroupViewModel(IEventAggregator eventAggregator, IGroupService groupService,
         IProcedureService procedureService)
@@ -66,17 +72,16 @@ class GroupViewModel : NavigationViewModel
 
     public ProcedureDto? SelectedProcedure { get; set; }
 
-    private ObservableCollection<PartDto> _partsInGroup = null!;
     public ObservableCollection<PartDto> PartsInGroup {
         get => _partsInGroup;
         set => SetProperty(ref _partsInGroup, value);
     }
 
-    private ObservableCollection<SwatchSet> _swatches = null!;
     public ObservableCollection<SwatchSet> Swatches {
         get => _swatches;
         set => SetProperty(ref _swatches, value);
     }
+
     public IEnumerable<SwatchItem> SwatchHeaders { get; }
 
     public DelegateCommand CreateProcedureCommand { get; }
@@ -113,7 +118,8 @@ class GroupViewModel : NavigationViewModel
             return;
         }
 
-        ProcedureDto? procedure = await CreateProcedureImpl(SelectedGroup.Id, Description, SelectedGroup.Procedures.Count());
+        ProcedureDto? procedure =
+            await CreateProcedureImpl(SelectedGroup.Id, Description, SelectedGroup.Procedures.Count());
         if (procedure != null)
         {
             AllProcedures.Add(procedure);

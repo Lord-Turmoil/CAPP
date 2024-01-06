@@ -1,13 +1,9 @@
-﻿// Copyright (C) 2018 - 2023 Tony's Studio. All rights reserved.
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
 
 namespace Tonisoft.AspExtensions.Response;
 
 public class ApiResponse
 {
-    public bool Status { get; set; }
-    public string? Message { get; set; }
-    public object? Result { get; set; }
-
     public ApiResponse()
     {
     }
@@ -25,15 +21,17 @@ public class ApiResponse
         Message = null;
         Result = result;
     }
+
+    public bool Status { get; set; }
+    public string? Message { get; set; }
+    public object? Result { get; set; }
 }
 
 public class ApiResponse<TResult> where TResult : class
 {
-    public bool Status { get; set; }
-    public string? Message { get; set; }
-    public TResult? Result { get; set; }
-
-    public ApiResponse() { }
+    public ApiResponse()
+    {
+    }
 
     public ApiResponse(string message, bool status = false)
     {
@@ -48,4 +46,8 @@ public class ApiResponse<TResult> where TResult : class
         Message = null;
         Result = result;
     }
+
+    public bool Status { get; set; }
+    public string? Message { get; set; }
+    public TResult? Result { get; set; }
 }

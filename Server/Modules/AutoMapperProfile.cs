@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using AutoMapper;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
 using Shared.Dtos;

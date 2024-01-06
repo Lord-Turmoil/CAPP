@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Microsoft.AspNetCore.Mvc;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Services;
 using Tonisoft.AspExtensions.Module;

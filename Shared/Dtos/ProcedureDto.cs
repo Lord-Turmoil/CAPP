@@ -1,4 +1,6 @@
-﻿using Shared.Dtos;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Shared.Dtos;
 
 namespace Server.Modules.Core.Dtos;
 

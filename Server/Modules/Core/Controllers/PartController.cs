@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Server.Modules.Core.Dtos;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Microsoft.AspNetCore.Mvc;
 using Server.Modules.Core.Services;
 using Shared.Dtos;
 using Tonisoft.AspExtensions.Module;
@@ -12,6 +13,7 @@ namespace Server.Modules.Core.Controllers;
 public class PartController : BaseController<PartController>
 {
     private readonly IPartService _service;
+
     public PartController(ILogger<PartController> logger, IPartService service) : base(logger)
     {
         _service = service;

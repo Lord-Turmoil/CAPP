@@ -1,15 +1,14 @@
-﻿using System.Linq.Expressions;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
 
 namespace Shared.Common;
 
-
 /// <summary>
-/// Group Technology Core.
+///     Group Technology Core.
 /// </summary>
 public static class GtCore
 {
     /// <summary>
-    /// The version of the Group Technology Core.
+    ///     The version of the Group Technology Core.
     /// </summary>
     public static string Version { get; } = "1.0.0";
 

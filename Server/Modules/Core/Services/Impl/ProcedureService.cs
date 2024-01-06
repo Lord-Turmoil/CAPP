@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using System.Net;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -11,7 +13,8 @@ namespace Server.Modules.Core.Services.Impl;
 
 public class ProcedureService : BaseService<ProcedureService>, IProcedureService
 {
-    public ProcedureService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<ProcedureService> logger) : base(unitOfWork, mapper, logger)
+    public ProcedureService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<ProcedureService> logger) : base(unitOfWork,
+        mapper, logger)
     {
     }
 

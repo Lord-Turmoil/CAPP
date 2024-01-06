@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using RestSharp;
 
 namespace Client.Extensions.Request;
 

@@ -1,4 +1,6 @@
-﻿using Client.Extensions.Request;
+﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
+
+using Client.Extensions.Request;
 using RestSharp;
 using Server.Modules.Core.Dtos;
 using Tonisoft.AspExtensions.Response;
