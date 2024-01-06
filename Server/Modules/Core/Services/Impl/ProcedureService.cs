@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Server.Modules.Core.Dtos;
 using Server.Modules.Core.Models;
 using Tonisoft.AspExtensions.Module;
@@ -25,18 +26,17 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
             return new ApiResponse<ProcedureDto>("Not found");
         }
 
-        Procedure procedure = new() {
+        EntityEntry<Procedure> procedure = await procedureRepo.InsertAsync(new Procedure {
             Group = group,
             Description = description,
             Order = order,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
-        };
-        await procedureRepo.InsertAsync(procedure);
+        });
 
         await _unitOfWork.SaveChangesAsync();
 
-        return new ApiResponse<ProcedureDto>(_mapper.Map<ProcedureDto>(procedure));
+        return new ApiResponse<ProcedureDto>(_mapper.Map<Procedure, ProcedureDto>(procedure.Entity));
     }
 
     public async Task<ApiResponse> DeleteProcedureAsync(int id)

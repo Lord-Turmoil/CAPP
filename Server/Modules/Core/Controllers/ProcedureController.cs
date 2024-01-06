@@ -18,9 +18,9 @@ public class ProcedureController : BaseController<ProcedureController>
     }
 
     [HttpPost]
-    public Task<ApiResponse<ProcedureDto>> CreateProcedureAsync([FromBody] CreateProcedureDto dto)
+    public Task<ApiResponse<ProcedureDto>> CreateProcedureAsync(int groupId, string description, int order)
     {
-        return _service.CreateProcedureAsync(dto.PartId, dto.Description, dto.Order);
+        return _service.CreateProcedureAsync(groupId, description, order);
     }
 
     [HttpDelete]
