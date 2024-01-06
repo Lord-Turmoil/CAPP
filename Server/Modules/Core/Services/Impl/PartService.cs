@@ -53,6 +53,23 @@ public class PartService : BaseService<PartService>, IPartService
         return new ApiResponse<PartDto>(_mapper.Map<Part, PartDto>(part.Entity));
     }
 
+    public async Task<ApiResponse<PartDto>> UpdatePartAsync(int id, string name, string opitz)
+    {
+        IRepository<Part> repo = _unitOfWork.GetRepository<Part>();
+        Part? part = await repo.FindAsync(id);
+        if (part == null)
+        {
+            return new ApiResponse<PartDto>("Not found");
+        }
+
+        part.Name = name;
+        part.Opitz = opitz;
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return new ApiResponse<PartDto>(_mapper.Map<Part, PartDto>(part));
+    }
+
     public async Task<ApiResponse> DeletePartAsync(int id)
     {
         IRepository<Part> repo = _unitOfWork.GetRepository<Part>();

@@ -42,6 +42,22 @@ public class ProcedureService : BaseService<ProcedureService>, IProcedureService
         return new ApiResponse<ProcedureDto>(_mapper.Map<Procedure, ProcedureDto>(procedure.Entity));
     }
 
+    public async Task<ApiResponse<ProcedureDto>> UpdateProcedureAsync(int id, string description)
+    {
+        IRepository<Procedure> repo = _unitOfWork.GetRepository<Procedure>();
+        Procedure? procedure = await repo.FindAsync(id);
+        if (procedure == null)
+        {
+            return new ApiResponse<ProcedureDto>("Not found");
+        }
+
+        procedure.Description = description;
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return new ApiResponse<ProcedureDto>(_mapper.Map<Procedure, ProcedureDto>(procedure));
+    }
+
     public async Task<ApiResponse> DeleteProcedureAsync(int id)
     {
         IRepository<Procedure> repo = _unitOfWork.GetRepository<Procedure>();

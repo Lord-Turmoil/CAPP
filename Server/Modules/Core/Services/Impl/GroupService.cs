@@ -34,6 +34,23 @@ public class GroupService : BaseService<GroupService>, IGroupService
         return new ApiResponse<GroupDto>(_mapper.Map<GroupDto>(group.Entity));
     }
 
+    public async Task<ApiResponse<GroupDto>> UpdateGroupAsync(int id, string description, string matrix)
+    {
+        IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
+        Group? group = await repo.FindAsync(id);
+        if (group == null)
+        {
+            return new ApiResponse<GroupDto>("Not found");
+        }
+
+        group.Description = description;
+        group.Matrix = matrix;
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return new ApiResponse<GroupDto>(_mapper.Map<GroupDto>(group));
+    }
+
     public async Task<ApiResponse<GroupDto>> GetGroupAsync(int id)
     {
         IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
