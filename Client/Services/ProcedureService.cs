@@ -8,9 +8,9 @@ namespace Client.Services;
 class ProcedureService : IProcedureService
 {
     private const string Route = "api/Procedure/";
-    private readonly HttpRestClient _client;
+    private readonly IHttpRestClient _client;
 
-    public ProcedureService(HttpRestClient client)
+    public ProcedureService(IHttpRestClient client)
     {
         _client = client;
     }

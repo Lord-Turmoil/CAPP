@@ -10,7 +10,7 @@ public class AutoMapperProfile : MapperConfigurationExpression
     public AutoMapperProfile()
     {
         CreateMap<Part, PartDto>().ReverseMap();
-        CreateMap<Group, ProcedureDto>().ReverseMap();
-        CreateMap<Procedure, GroupDto>().ReverseMap();
+        CreateMap<Procedure, ProcedureDto>().ReverseMap();
+        CreateMap<Group, GroupDto>().ReverseMap();
     }
 }

@@ -35,9 +35,8 @@ public class GroupService : BaseService<GroupService>, IGroupService
     {
         IRepository<Group> repo = _unitOfWork.GetRepository<Group>();
         Group? group = await repo.GetFirstOrDefaultAsync(
-            predicate: p => p.Id == id,
-            include: source => source.Include(p => p.Procedures)
-        );
+            include: source => source.Include(p => p.Procedures),
+            predicate: p => p.Id == id);
         if (group == null)
         {
             return new ApiResponse<GroupDto>("Not found");

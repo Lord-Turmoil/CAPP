@@ -8,9 +8,9 @@ namespace Client.Services;
 class GroupService : IGroupService
 {
     private const string Route = "api/Group/";
-    private readonly HttpRestClient _client;
+    private readonly IHttpRestClient _client;
 
-    public GroupService(HttpRestClient client)
+    public GroupService(IHttpRestClient client)
     {
         _client = client;
     }

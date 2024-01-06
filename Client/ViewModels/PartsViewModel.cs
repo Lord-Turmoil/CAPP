@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Client.Extensions.Popup;
 using Client.Services;
 using ImTools;
 using Prism.Commands;
@@ -17,7 +18,7 @@ class PartsViewModel : NavigationViewModel
     private int _opitz;
     private readonly IPartService _service;
 
-    public PartsViewModel(IEventAggregator eventAggregator, IPartService service) 
+    public PartsViewModel(IEventAggregator eventAggregator, IPartService service)
         : base(eventAggregator)
     {
         _service = service;
@@ -90,16 +91,19 @@ class PartsViewModel : NavigationViewModel
         try
         {
             ApiResponse<List<PartDto>> response = await _service.GetPartsAsync();
-            if (!response.Status)
+            if (response.Status)
             {
-                throw new Exception($"Invalid Response: {response.Message}");
+                AllParts = new ObservableCollection<PartDto>(response.Result!);
+            }
+            else
+            {
+                PopupManager.ShowInvalidResponse(response);
             }
 
-            AllParts = new ObservableCollection<PartDto>(response.Result!.ToList());
         }
         catch (Exception e)
         {
-            MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            PopupManager.ShowNetworkError(e);
         }
     }
 
