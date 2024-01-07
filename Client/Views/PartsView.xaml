@@ -51,10 +51,10 @@
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Name}" Binding="{Binding Name}" />
-                    <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.Opitz}" Binding="{Binding Opitz}" />
-                    <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.CreatedAt}" Binding="{Binding CreatedAt}" />
-                    <DataGridTextColumn Width="*" Header="{x:Static ext:Texts.UpdatedAt}" Binding="{Binding UpdatedAt}" />
+                    <DataGridTextColumn Width="2*" Header="{x:Static ext:Texts.Name}" Binding="{Binding Name}" />
+                    <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.Opitz}" Binding="{Binding Opitz}" />
+                    <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.CreatedAt}" Binding="{Binding CreatedAt}" />
+                    <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.UpdatedAt}" Binding="{Binding UpdatedAt}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
