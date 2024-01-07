@@ -11,7 +11,7 @@
                 <TextBlock Style="{StaticResource TitleText}" Text="简易派生式 CAPP" />
             </Grid>
             <StackPanel Style="{StaticResource Paragraph}" Orientation="Horizontal">
-                <TextBlock Style="{StaticResource ParagraphText}" Text="    GitHub 仓库连接：" />
+                <TextBlock Style="{StaticResource ParagraphText}" Text="    GitHub 仓库链接：" />
                 <TextBlock Style="{StaticResource ParagraphText}">
                     <Hyperlink Click="Hyperlink_OnClick" NavigateUri="https://github.com/Lord-Turmoil/CAPP">
                         <TextBlock Text="https://github.com/Lord-Turmoil/CAPP" />
