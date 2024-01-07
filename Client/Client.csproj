@@ -9,7 +9,6 @@
         <PackageIcon></PackageIcon>
         <ApplicationIcon>icon.ico</ApplicationIcon>
         <Copyright>Copyright (C) Tony's Studio 2023</Copyright>
-        <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
