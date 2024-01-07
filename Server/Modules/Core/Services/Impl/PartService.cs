@@ -65,7 +65,7 @@ public class PartService : BaseService<PartService>, IPartService
 
         part.Name = name;
         part.Opitz = opitz;
-        part.UpdatedAt = DateTime.UtcNow;
+        part.UpdatedAt = DateTime.Now;
 
         await _unitOfWork.SaveChangesAsync();
 
