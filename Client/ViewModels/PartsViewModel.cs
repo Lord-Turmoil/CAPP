@@ -2,6 +2,7 @@
 
 using System.Collections.ObjectModel;
 using System.Windows;
+using Client.Extensions;
 using Client.Extensions.Popup;
 using Client.Services;
 using ImTools;
@@ -80,6 +81,8 @@ class PartsViewModel : NavigationViewModel
             // Clear input to prevent consecutive invocation.
             Name = "";
             Opitz = "";
+
+            PopupManager.Success(Texts.PartCreated);
         }
     }
 
@@ -99,6 +102,7 @@ class PartsViewModel : NavigationViewModel
             int index = AllParts.IndexOf(SelectedPart);
             AllParts.RemoveAt(index);
             AllParts.Insert(index, part);
+            PopupManager.Success(Texts.PartUpdated);
         }
     }
 
@@ -114,9 +118,10 @@ class PartsViewModel : NavigationViewModel
         {
             await DeletePartImpl(part.Id);
             AllParts.Remove(part);
+            Name = "";
+            Opitz = "";
+            PopupManager.Success(Texts.PartDeleted);
         }
-
-        SelectedPart = null;
     }
 
     public override void OnNavigatedTo(NavigationContext navigationContext)

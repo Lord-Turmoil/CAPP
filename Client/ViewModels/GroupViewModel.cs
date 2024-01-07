@@ -139,6 +139,7 @@ class GroupViewModel : NavigationViewModel
         {
             AllProcedures.Add(procedure);
             Description = "";
+            PopupManager.Success(Texts.ProcedureCreated);
         }
     }
 
@@ -156,6 +157,7 @@ class GroupViewModel : NavigationViewModel
             int index = AllProcedures.IndexOf(SelectedProcedure);
             AllProcedures.RemoveAt(index);
             AllProcedures.Insert(index, procedure);
+            PopupManager.Success(Texts.ProcedureUpdated);
         }
     }
 
@@ -171,9 +173,9 @@ class GroupViewModel : NavigationViewModel
         {
             DeleteProcedureImpl(procedure.Id);
             AllProcedures.Remove(procedure);
+            Description = "";
+            PopupManager.Success(Texts.ProcedureDeleted);
         }
-
-        SelectedProcedure = null;
     }
 
     private void DeleteGroup()

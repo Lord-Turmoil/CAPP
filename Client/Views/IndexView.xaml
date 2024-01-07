@@ -23,7 +23,7 @@
             </Grid>
             <Grid Style="{StaticResource Paragraph}">
                 <TextBlock Style="{StaticResource ParagraphText}"
-                           Text="    程序支持基于 OPITZ 编码的零件族管理，并提供零件族标准工艺流程添加。此外，支持派生式零件查询。程序使用了前后端的架构，使用时需要在本地同时运行后端和客户端。" />
+                           Text="    程序支持基于 OPITZ 编码的零件族管理，并提供零件族标准工艺流程添加。此外，支持派生式零件查询。程序使用了前后端架构，使用时需要在本地同时运行客户端和服务端。" />
             </Grid>
             <Grid Style="{StaticResource Section}">
                 <TextBlock Style="{StaticResource SectionText}" Text="开发工具" />

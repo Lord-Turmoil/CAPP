@@ -64,5 +64,13 @@ static class Texts
     /*
      * Messages
      */
+    public const string PartCreated = "零件创建成功";
+    public const string PartUpdated = "零件修改成功";
+    public const string PartDeleted = "零件删除成功";
     public const string GroupCreated = "零件族创建成功";
+    public const string GroupUpdated = "零件族修改成功";
+    public const string GroupDeleted = "零件族删除成功";
+    public const string ProcedureCreated = "工艺步骤创建成功";
+    public const string ProcedureUpdated = "工艺步骤修改成功";
+    public const string ProcedureDeleted = "工艺步骤删除成功";
 }

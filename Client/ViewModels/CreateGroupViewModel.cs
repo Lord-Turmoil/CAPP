@@ -109,6 +109,7 @@ class CreateGroupViewModel : NavigationViewModel
             int index = AllGroups.IndexOf(SelectedGroup);
             AllGroups.RemoveAt(index);
             AllGroups.Insert(index, group);
+            PopupManager.Success(Texts.GroupUpdated);
         }
     }
 
@@ -129,6 +130,7 @@ class CreateGroupViewModel : NavigationViewModel
         AllGroups.Remove(SelectedGroup);
         ResetGroup();
         Description = "";
+        PopupManager.Success(Texts.GroupDeleted);
     }
 
     public override void OnNavigatedTo(NavigationContext navigationContext)
