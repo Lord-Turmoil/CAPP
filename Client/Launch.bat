@@ -1,9 +1,9 @@
 @echo off
 
 if "%1"=="start" (
-    start /d "..\Server" "CAPP.Server.exe"
+    start /d "..\Server" "Server.exe"
 )
 
 if "%1"=="stop" (
-    call "cmd.exe" /c taskkill /F /IM "CAPP.Server.exe" /T
+    call "cmd.exe" /c taskkill /F /IM "Server.exe" /T
 )
