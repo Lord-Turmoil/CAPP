@@ -1,5 +1,6 @@
 ﻿// Copyright (C) 2018 - 2024 Tony's Studio. All rights reserved.
 
+using System.Diagnostics;
 using System.Windows;
 using Client.Extensions.Request;
 using Client.Services;
@@ -36,6 +37,7 @@ public partial class App : PrismApplication
 
     protected override Window CreateShell()
     {
+        Process.Start("Launch.bat", "start");
         return Container.Resolve<MainView>();
     }
 }

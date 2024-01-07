@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Computer-Aided Process Planning" Height="640" Width="960"
+        Closing="MainView_OnClosing"
         MinWidth="860" MinHeight="480">
     <Grid>
         <i:Interaction.Triggers>

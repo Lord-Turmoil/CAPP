@@ -9,6 +9,7 @@
         <PackageIcon></PackageIcon>
         <ApplicationIcon>icon.ico</ApplicationIcon>
         <Copyright>Copyright (C) Tony's Studio 2023</Copyright>
+        <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,6 +30,9 @@
       <None Update="icon.ico">
         <Pack>True</Pack>
         <PackagePath>\</PackagePath>
+      </None>
+      <None Update="Launch.bat">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 

@@ -8,7 +8,7 @@
     <ScrollViewer PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
         <StackPanel Orientation=" Vertical">
             <Grid Style="{StaticResource Title}">
-                <TextBlock Style="{StaticResource TitleText}" Text="工艺决策程序" />
+                <TextBlock Style="{StaticResource TitleText}" Text="简易派生式 CAPP" />
             </Grid>
             <StackPanel Style="{StaticResource Paragraph}" Orientation="Horizontal">
                 <TextBlock Style="{StaticResource ParagraphText}" Text="    GitHub 仓库连接：" />
@@ -40,8 +40,8 @@
             <StackPanel Style="{StaticResource Paragraph}" Orientation="Vertical">
                 <TextBlock Style="{StaticResource ParagraphText}" Text="    操作系统：Windows" />
                 <TextBlock Style="{StaticResource ParagraphText}" Text="    .NET 版本：6.0 及以上" />
-                <TextBlock Style="{StaticResource ParagraphText}" Text="    内存要求：至少 64 MB" />
-                <TextBlock Style="{StaticResource ParagraphText}" Text="    存储要求：至少 2 MB" />
+                <TextBlock Style="{StaticResource ParagraphText}" Text="    内存要求：至少 256 MB" />
+                <TextBlock Style="{StaticResource ParagraphText}" Text="    存储要求：至少 64 MB" />
             </StackPanel>
             <Grid Style="{StaticResource Paragraph}" HorizontalAlignment="Center">
                 <TextBlock Style="{StaticResource ParagraphText}" Text="Copyright © Tony's Studio 2023" />
