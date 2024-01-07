@@ -162,7 +162,8 @@
                               IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="2*" Header="{x:Static ext:Texts.Name}" Binding="{Binding Name}" />
-                            <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.Opitz}" Binding="{Binding Opitz}" />
+                            <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.Opitz}"
+                                                Binding="{Binding Opitz}" />
                             <DataGridTextColumn Width="1*" Header="{x:Static ext:Texts.UpdatedAt}"
                                                 Binding="{Binding UpdatedAt}" />
                         </DataGrid.Columns>
