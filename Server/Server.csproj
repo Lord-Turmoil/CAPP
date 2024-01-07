@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <Copyright>Copyright (C) Tony's Studio 2024</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

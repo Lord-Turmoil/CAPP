@@ -138,6 +138,7 @@ class GroupViewModel : NavigationViewModel
         if (procedure != null)
         {
             AllProcedures.Add(procedure);
+            SelectedGroup.Procedures = AllProcedures;
             Description = "";
             PopupManager.Success(Texts.ProcedureCreated);
         }

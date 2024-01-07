@@ -37,7 +37,6 @@ public partial class App : PrismApplication
 
     protected override Window CreateShell()
     {
-        Process.Start("Launch.bat", "start");
         return Container.Resolve<MainView>();
     }
 }

@@ -88,6 +88,9 @@ class DeriveViewModel : NavigationViewModel
         IEnumerable<GroupDto> groups = await SearchGroupsImpl(Query);
         AllGroups = new ObservableCollection<GroupDto>(groups);
         SelectedGroup = null;
+        AllProcedures = new ObservableCollection<ProcedureDto>();
+        AllParts = new ObservableCollection<PartDto>();
+        Swatches = SwatchHelper.InitSwatches();
     }
 
     private void OnSelectedGroupChanged(GroupDto? value)
